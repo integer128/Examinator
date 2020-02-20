@@ -1,15 +1,13 @@
 #include "dbcontrol.h"
 
-#define LOGIN admin
-
 DBControl::DBControl()
 {
     sdb.setDatabaseName("examinator.db");
     sdb.open();
 
-    /*if(!sdb.open()){
+    if(!sdb.open()){
         qDebug() << sdb.lastError().text();
-    }*/
+    }
 }
 
 bool DBControl::checkUser(QString login, QString password)

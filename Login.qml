@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.12
 import Auth 1.0
 
 Page {
-    anchors.fill: parent
 
     ColumnLayout {
         width: parent.width

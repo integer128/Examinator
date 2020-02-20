@@ -11,6 +11,14 @@ ApplicationWindow {
 
     Auth {
         id: auth
+
+        onAuthFlagChanged: {
+            if(authFlag === true) {
+                stackView.push("Base.qml")
+            } else {
+                stackView.pop()
+            }
+        }
     }
 
     StackView {

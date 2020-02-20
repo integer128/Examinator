@@ -3,6 +3,6 @@
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>Login.qml</file>
-        <file>base.qml</file>
+        <file>Base.qml</file>
     </qresource>
 </RCC>
