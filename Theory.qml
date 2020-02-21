@@ -4,36 +4,7 @@ import QtQuick.Controls.Material 2.14
 import QtQuick.Layouts 1.12
 
 Page {
-    id: main_menu
-
-    Menu {
-        id: menuTB
-        height: parent.height
-        width: parent.width / 3
-
-        MenuItem {
-            text: "Панель управления"
-            enabled: auth.userRole === 2
-            onClicked: {
-                stackView.push("AdminPanel.qml")
-            }
-        }
-
-        MenuItem {
-            text: "Выход из аккаунта"
-            onClicked: {
-                stackView.pop()
-                auth.authFlag = false
-            }
-        }
-
-        MenuItem {
-            text: "Выход"
-            onClicked: {
-                Qt.callLater(Qt.quit)
-            }
-        }
-    }
+    id: theory_page
 
     header: ToolBar {
         height: 40
@@ -43,16 +14,15 @@ Page {
             anchors.leftMargin: 10
             anchors.verticalCenter: parent.verticalCenter
 
-            Rectangle {
-                width: 15
-                height: 15
-                color: "black"
+            Text {
+                text: "Back"
+                font.pixelSize: 16
+                font.family: "Oswald"
                 anchors.centerIn: parent
-                radius: 22
             }
 
             onClicked: {
-                menuTB.open()
+                stackView.pop();
             }
         }
     }
@@ -68,7 +38,7 @@ Page {
             color: Qt.rgba(255, 255, 255, 0.65)
 
             Text {
-                text: "Теория"
+                text: "Глава 1"
                 font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
@@ -79,7 +49,7 @@ Page {
                 id: btn_1
                 width: 200
                 height: 50
-                text: "Начать"
+                text: "Читать"
                 anchors.bottom: parent.bottom
 
                 background: Rectangle {
@@ -92,7 +62,7 @@ Page {
                 onHoveredChanged: hovered ? rect_1.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
-                    stackView.push("Theory.qml")
+
                 }
             }
         }
@@ -105,7 +75,7 @@ Page {
             color: Qt.rgba(255, 255, 255, 0.65)
 
             Text {
-                text: "Проверь себя"
+                text: "Глава 2"
                 font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
@@ -115,7 +85,7 @@ Page {
             Button {
                 width: 200
                 height: 50
-                text: "Начать"
+                text: "Читать"
                 anchors.bottom: parent.bottom
 
                 background: Rectangle {
@@ -137,7 +107,7 @@ Page {
             color: Qt.rgba(255, 255, 255, 0.65)
 
             Text {
-                text: "В разработке"
+                text: "Глава 3"
                 font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
@@ -147,7 +117,7 @@ Page {
             Button {
                 width: 200
                 height: 50
-                text: "Начать"
+                text: "Читать"
                 anchors.bottom: parent.bottom
 
                 background: Rectangle {

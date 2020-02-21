@@ -13,8 +13,11 @@ void Auth::enter(QString login, QString password)
         this->login = login;
         this->password = password;
         this->id = sdb->getID();
+        this->role = sdb->getRole();
 
         emit authFlagChanged();
+        emit idChanged();
+        emit roleChanged();
     } else {
 
     }

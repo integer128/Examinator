@@ -23,6 +23,7 @@ bool DBControl::checkUser(QString login, QString password)
 
         if(id >= 0 && role >= 0) {
             userID = id;
+            userRole = role;
             return true;
         }
     }

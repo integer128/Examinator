@@ -10,9 +10,11 @@ public:
     DBControl();
     bool checkUser(QString login, QString password);
     int getID(){ return userID; }
+    int getRole() { return userRole; }
 
 private:
     int userID;
+    int userRole;
     QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
     QSqlQuery query;
 };
