@@ -21,9 +21,9 @@ Page {
             text: "EXAMINATOR"
             font.pixelSize: 36
             font.bold: true
+            font.family: "Oswald"
             color: "#FFFFFF"
             opacity: 0.15
-            font.family: "Oswald"
 
             OpacityAnimator {
                 target: log_text
@@ -144,12 +144,6 @@ Page {
             onClicked: {
                 auth.enter(login_.text, password_.text)
             }
-        }
-
-        Label {
-            text: auth.authFlag
-            font.pixelSize: 20
-            color: "red"
         }
     }
 }

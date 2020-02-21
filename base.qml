@@ -28,7 +28,7 @@ Page {
         MenuItem {
             text: "Выход"
             onClicked: {
-
+                Qt.callLater(Qt.quit)
             }
         }
     }
@@ -37,6 +37,9 @@ Page {
         height: 40
 
         ToolButton {
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.verticalCenter: parent.verticalCenter
 
             Rectangle {
                 width: 15
@@ -45,10 +48,6 @@ Page {
                 anchors.centerIn: parent
                 radius: 22
             }
-
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
 
             onClicked: {
                 menuTB.open()
