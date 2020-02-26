@@ -39,6 +39,7 @@ Page {
         height: 40
 
         ToolButton {
+            id: tbtn
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.verticalCenter: parent.verticalCenter
@@ -54,6 +55,13 @@ Page {
             onClicked: {
                 menuTB.open()
             }
+        }
+
+        Label {
+            id: fio_label
+            x: tbtn.width + 10
+            topPadding: 10
+            text: auth.fio + "(id:" + auth.userId + " role:" + auth.userRole + ")"
         }
     }
 

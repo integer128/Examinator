@@ -11,11 +11,13 @@ public:
     bool checkUser(QString login, QString password);
     int getID(){ return userID; }
     int getRole() { return userRole; }
+    QString getFio() { return fio; }
 
 private:
     int userID;
     int userRole;
-    QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
+    QString fio;
+    QSqlDatabase sdb{QSqlDatabase::addDatabase("QSQLITE")};
     QSqlQuery query;
 };
 

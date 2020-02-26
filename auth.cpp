@@ -1,6 +1,6 @@
 #include "auth.h"
 
-Auth::Auth(QObject *parent) : QObject(parent)
+Auth::Auth(QObject *parent) : QObject{parent}
 {
     sdb = new DBControl();
 }
@@ -14,6 +14,7 @@ void Auth::enter(QString login, QString password)
         this->password = password;
         this->id = sdb->getID();
         this->role = sdb->getRole();
+        this->fio = sdb->getFio();
 
         emit authFlagChanged();
         emit idChanged();

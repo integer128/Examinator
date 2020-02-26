@@ -14,6 +14,7 @@ class Auth : public QObject
     Q_PROPERTY(int userId READ getId WRITE setId NOTIFY idChanged)
     Q_PROPERTY(int userRole READ getRole WRITE setRole NOTIFY roleChanged)
     Q_PROPERTY(QDateTime lastExam READ getLastExam WRITE setLastExam NOTIFY lastExamChanged)
+    Q_PROPERTY(QString fio READ getFio WRITE setFio NOTIFY fioChanged)
 
 public:
     explicit Auth(QObject *parent = nullptr);
@@ -30,6 +31,9 @@ public:
     QDateTime getLastExam() const { return lastExam; }
     void setLastExam(const QDateTime& value_) { lastExam = value_; }
 
+    QString getFio() const { return fio; }
+    void setFio(const QString& value) { fio = value; }
+
     Q_INVOKABLE void enter(QString login, QString password);
 
 signals:
@@ -37,10 +41,13 @@ signals:
     void idChanged();
     void roleChanged();
     void lastExamChanged();
+    void fioChanged();
+
 private:
-    bool authFlag = false;
+    bool authFlag{false};
     QString login;
     QString password;
+    QString fio;
     int id;
     int role;
     QDateTime lastExam;
