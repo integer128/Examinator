@@ -6,5 +6,6 @@
         <file>Base.qml</file>
         <file>Theory.qml</file>
         <file>AdminPanel.qml</file>
+        <file>TheoryPage.qml</file>
     </qresource>
 </RCC>

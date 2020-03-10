@@ -1,13 +1,11 @@
 #include "dbcontrol.h"
 
+DBControl* DBControl::db_ = nullptr;
+
 DBControl::DBControl()
 {
-    sdb.setDatabaseName("examinator.db");
+    sdb.setDatabaseName("D:\\Repository\\Examinator\\examinator.db");
     sdb.open();
-
-    if(!sdb.open()){
-        qDebug() << sdb.lastError().text();
-    }
 }
 
 bool DBControl::checkUser(QString login, QString password)
@@ -32,4 +30,3 @@ bool DBControl::checkUser(QString login, QString password)
 
     return false;
 }
-

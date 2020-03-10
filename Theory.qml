@@ -17,7 +17,6 @@ Page {
             Text {
                 text: "Back"
                 font.pixelSize: 16
-                font.family: "Oswald"
                 anchors.centerIn: parent
             }
 
@@ -39,7 +38,6 @@ Page {
 
             Text {
                 text: "Глава 1"
-                font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -62,7 +60,7 @@ Page {
                 onHoveredChanged: hovered ? rect_1.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
-
+                    stackView.push("TheoryPage.qml")
                 }
             }
         }
@@ -76,7 +74,6 @@ Page {
 
             Text {
                 text: "Глава 2"
-                font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -108,7 +105,6 @@ Page {
 
             Text {
                 text: "Глава 3"
-                font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent

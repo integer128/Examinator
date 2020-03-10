@@ -16,7 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         auth.cpp \
         dbcontrol.cpp \
-        main.cpp
+        main.cpp \
+        theory.cpp
 
 RESOURCES += qml.qrc
 
@@ -35,4 +36,5 @@ DISTFILES +=
 
 HEADERS += \
     auth.h \
-    dbcontrol.h
+    dbcontrol.h \
+    theory.h

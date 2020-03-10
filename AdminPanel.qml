@@ -17,7 +17,6 @@ Page {
             Text {
                 text: "Back"
                 font.pixelSize: 16
-                font.family: "Oswald"
                 anchors.centerIn: parent
             }
 

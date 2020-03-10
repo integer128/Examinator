@@ -1,8 +1,10 @@
 #include "auth.h"
 
-Auth::Auth(QObject *parent) : QObject{parent}
+Auth::Auth(QObject *parent)
+    : QObject{parent}
+    , sdb{DBControl::getInstance()}
 {
-    sdb = new DBControl();
+
 }
 
 void Auth::enter(QString login, QString password)

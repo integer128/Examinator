@@ -77,7 +77,6 @@ Page {
 
             Text {
                 text: "Теория"
-                font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -114,7 +113,6 @@ Page {
 
             Text {
                 text: "Проверь себя"
-                font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -146,7 +144,6 @@ Page {
 
             Text {
                 text: "В разработке"
-                font.family: "Oswald"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
