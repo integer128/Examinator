@@ -9,7 +9,9 @@ class Processor
 public:
     Processor();
     ~Processor();
-    std::pair<DBResult, std::vector<DBEntry> > requestTableData(DBTables table);
+
+    template<typename ...Arguments>
+    std::pair<DBResult, std::vector<DBEntry> > requestTableData(DBTables table, Arguments ...arguments);
 
 private:
     struct ProcessorPrivate;

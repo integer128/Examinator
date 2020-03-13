@@ -20,8 +20,10 @@ Processor::~Processor()
 
 }
 
-std::pair<DBResult, std::vector<DBEntry> > Processor::requestTableData(DBTables table)
+template<typename ...Arguments>
+std::pair<DBResult, std::vector<DBEntry> > Processor::requestTableData(DBTables table, Arguments ...arguments)
 {
-    const auto& result { m_d->selector.selectAll(TableMapper.at(table)) };
+    //const auto& result { m_d->selector.selectAll(TableMapper.at(table)) };
+    const auto& result { m_d->selector.select(TableMapper.at(table), arguments...) };
     return result;
 }

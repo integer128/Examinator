@@ -25,7 +25,11 @@ SOURCES += \
         src/sources/manipulator.cpp \
         src/sources/processor.cpp \
         src/sources/selector.cpp \
-        src/sources/theory.cpp \
+        src/sources/theory.cpp \ \
+    src/sources/user.cpp \
+    src/sources/userreader.cpp \
+    user.cpp \
+    userreader.cpp
 
 RESOURCES += qml.qrc
 
@@ -53,5 +57,9 @@ HEADERS += \
     src/headers/processor.h \
     src/headers/selector.h \
     src/headers/theory.h \ \
+    src/headers/user.h \
+    src/headers/userreader.h \
     src/headers/utility.h \
+    user.h \
+    userreader.h \
     utility.h

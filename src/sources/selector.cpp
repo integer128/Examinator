@@ -1,4 +1,5 @@
 #include "selector.h"
+#include "utility.h"
 
 #include <QSqlQuery>
 #include <QSqlRecord>
@@ -9,9 +10,9 @@ std::pair<DBResult, std::vector<DBEntry> > Selector::selectAll(const QString &ta
 
     DBResult result;
     QSqlQuery resultQuery;
+    std::vector<DBEntry> returnData;
     std::tie(result, resultQuery) = m_executor.execute(query);
 
-    std::vector<DBEntry> returnData;
     if(result == DBResult::OK)
     {
         while(resultQuery.next())
@@ -32,31 +33,25 @@ std::pair<DBResult, std::vector<DBEntry> > Selector::selectAll(const QString &ta
 }
 
 
-template<typename ...Args, typename ...Cond>
-std::pair<DBResult, std::vector<DBEntry> > Selector::select(const QString &tableName, Args ...arguments, Cond ...conditions)
+template<typename ...Args>
+std::pair<DBResult, std::vector<DBEntry> > Selector::select(const QString &tableName, Args ...arguments)
 {
     QString query;
     QString args[] = { utility::to_str(arguments)... };
-    QString cond[] = { utility::to_str(conditions)... };
 
-    if(cond->size() == 0)
+    if(args->size() == 0)
     {
         query = generateQuery(tableName, arguments...);
     }
-    else if(args->size() == 0)
-    {
-        query = generateQuery(tableName);
-    }
     else
     {
-        query = generateQuery(tableName, arguments..., conditions...);
+        query = generateQuery(tableName);
     }
 
     DBResult result;
     QSqlQuery resultQuery;
-    std::tie(result, resultQuery) = m_executor.execute(query);
-
     std::vector<DBEntry> returnData;
+    std::tie(result, resultQuery) = m_executor.execute(query);
 
     if(result == DBResult::OK)
     {
@@ -82,44 +77,31 @@ QString Selector::generateQuery(const QString &tableName) const
     return query;
 }
 
-template<typename ...T>
-QString Selector::generateQuery(const QString &tableName, T ...t) const
+template<typename ...Arguments>
+QString Selector::generateQuery(const QString &tableName, Arguments ...arguments) const
 {
     QString query { "SELECT " };
-    QString tmp[] { utility::to_str(t)... };
+    QString tmp[] { utility::to_str(arguments)... };
 
-    for(int i = 0; i <= tmp->size(); ++i)
+    const int conditionIndex = tmp->indexOf(":");
+
+    for(int i = 0; i < conditionIndex; ++i)
     {
-        query +=  tmp[i];
-        if(i != tmp->size()) query += ",";
+        query += tmp[i];
+        if(i != conditionIndex) query += ",";
     }
 
     query += " FROM " + tableName;
 
-    return query;
-}
-
-template<typename ...Args, typename ...Conditions>
-QString Selector::generateQuery(const QString &tableName, Args ...args, Conditions ...conditions) const
-{
-    QString query { "SELECT " };
-    QString arguments[] { utility::to_str(args)... };
-    QString con[] { utility::to_str(conditions)... };
-
-    //add arguments
-    for(int i = 0; i < arguments->size(); ++i)
+    if(conditionIndex)
     {
-        query += arguments[i];
-        if(i != arguments->size()) query += ",";
-    }
+        query += " WHERE ";
+        for(int i = conditionIndex + 1; i < tmp->size(); i++)
+        {
+            query += tmp[i];
 
-    query += " FROM " + tableName;
-
-    //add conditions
-    for(int i = 0; i < con->size(); ++i)
-    {
-        query += con[i];
-        if(i != con->size()) query += " AND ";
+            if(i != tmp->size()) query += " AND ";
+        }
     }
 
     return query;
