@@ -4,64 +4,25 @@ import QtQuick.Controls.Material 2.14
 import QtQuick.Layouts 1.12
 
 Page {
-    id: main_menu
-
-    Menu {
-        id: menuTB
-        height: parent.height
-        width: parent.width / 3
-
-        MenuItem {
-            text: "Панель управления"
-            enabled: auth.userRole === 2
-            onClicked: {
-                stackView.push("AdminPanel.qml")
-            }
-        }
-
-        MenuItem {
-            text: "Выход из аккаунта"
-            onClicked: {
-                stackView.pop()
-                auth.authFlag = false
-            }
-        }
-
-        MenuItem {
-            text: "Выход"
-            onClicked: {
-                Qt.callLater(Qt.quit)
-            }
-        }
-    }
+    id: theory_page
 
     header: ToolBar {
         height: 40
 
         ToolButton {
-            id: tbtn
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.verticalCenter: parent.verticalCenter
 
-            Rectangle {
-                width: 15
-                height: 15
-                color: "black"
+            Text {
+                text: "Back"
+                font.pixelSize: 16
                 anchors.centerIn: parent
-                radius: 22
             }
 
             onClicked: {
-                menuTB.open()
+                stackView.pop();
             }
-        }
-
-        Label {
-            id: fio_label
-            x: tbtn.width + 10
-            topPadding: 10
-            text: auth.fio + "(id:" + auth.userId + " role:" + auth.userRole + ")"
         }
     }
 
@@ -76,7 +37,7 @@ Page {
             color: Qt.rgba(255, 255, 255, 0.65)
 
             Text {
-                text: "Теория"
+                text: "Глава 1"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -86,7 +47,7 @@ Page {
                 id: btn_1
                 width: 200
                 height: 50
-                text: "Начать"
+                text: "Читать"
                 anchors.bottom: parent.bottom
 
                 background: Rectangle {
@@ -99,7 +60,9 @@ Page {
                 onHoveredChanged: hovered ? rect_1.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
-                    stackView.push("Theory.qml")
+                    stackView.push("qrc:/TheoryPage")
+                    theory_data.setTextByIndex(1)
+                    theory_data.setTextNameByIndex(1)
                 }
             }
         }
@@ -112,7 +75,7 @@ Page {
             color: Qt.rgba(255, 255, 255, 0.65)
 
             Text {
-                text: "Проверь себя"
+                text: "Глава 2"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -121,7 +84,7 @@ Page {
             Button {
                 width: 200
                 height: 50
-                text: "Начать"
+                text: "Читать"
                 anchors.bottom: parent.bottom
 
                 background: Rectangle {
@@ -132,6 +95,12 @@ Page {
 
                 onHoveredChanged: hovered ? rect_2.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_2.color = Qt.rgba(255, 255, 255, 0.65)
+
+                onClicked: {
+                    stackView.push("qrc:/TheoryPage")
+                    theory_data.setTextByIndex(2)
+                    theory_data.setTextNameByIndex(2)
+                }
             }
         }
 
@@ -143,7 +112,7 @@ Page {
             color: Qt.rgba(255, 255, 255, 0.65)
 
             Text {
-                text: "В разработке"
+                text: "Глава 3"
                 font.italic: true
                 font.pixelSize: 18
                 anchors.centerIn: parent
@@ -152,7 +121,7 @@ Page {
             Button {
                 width: 200
                 height: 50
-                text: "Начать"
+                text: "Читать"
                 anchors.bottom: parent.bottom
 
                 background: Rectangle {
@@ -163,6 +132,11 @@ Page {
 
                 onHoveredChanged: hovered ? rect_3.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_3.color = Qt.rgba(255, 255, 255, 0.65)
+                onClicked: {
+                    stackView.push("qrc:/TheoryPage")
+                    theory_data.setTextByIndex(3)
+                    theory_data.setTextNameByIndex(3)
+                }
             }
         }
     }

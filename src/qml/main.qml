@@ -1,6 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import Auth 1.0
+import Theory 1.0
 
 ApplicationWindow {
     id: window
@@ -14,16 +15,22 @@ ApplicationWindow {
 
         onAuthFlagChanged: {
             if(authFlag === true) {
-                stackView.push("Base.qml")
+                stackView.push("qrc:/base")
             } else {
                 stackView.pop()
             }
         }
     }
 
+    TheoryData {
+        id: theory_data
+        txt: ""
+        txt_name: ""
+    }
+
     StackView {
         id: stackView
-        initialItem: "Login.qml"
+        initialItem: "qrc:/Login"
         anchors.fill: parent
     }
 }

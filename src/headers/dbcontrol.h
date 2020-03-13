@@ -1,5 +1,4 @@
-#ifndef DBCONTROL_H
-#define DBCONTROL_H
+#pragma once
 
 #include <QtSql>
 #include <QString>
@@ -16,6 +15,9 @@ public:
     int getRole() { return userRole; }
     QString getFio() { return fio; }
 
+    QString getTextById(int index);
+    QString getTextNameById(int index);
+
 private:
     DBControl();
 
@@ -26,8 +28,5 @@ private:
     int userID;
     int userRole;
     QString fio;
-    QSqlDatabase sdb{QSqlDatabase::addDatabase("QSQLITE")};
-    QSqlQuery query;
+    QSqlDatabase *sdb;
 };
-
-#endif // DBCONTROL_H

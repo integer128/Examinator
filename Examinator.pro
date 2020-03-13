@@ -12,17 +12,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+INCLUDEPATH += $$PWD/src
+INCLUDEPATH += $$PWD/src/headers
+INCLUDEPATH += $$PWD/src/source
 
 SOURCES += \
-        auth.cpp \
-        dbcontrol.cpp \
-        main.cpp \
-        theory.cpp
+        src/main.cpp \
+        src/sources/auth.cpp \
+        src/sources/connectionmanager.cpp \
+        src/sources/dbcontrol.cpp \
+        src/sources/executor.cpp \
+        src/sources/manipulator.cpp \
+        src/sources/processor.cpp \
+        src/sources/selector.cpp \
+        src/sources/theory.cpp \
 
 RESOURCES += qml.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH = $$PWD/src/qml
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
@@ -35,6 +43,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    auth.h \
-    dbcontrol.h \
-    theory.h
+    src/headers/auth.h \
+    src/headers/connectionmanager.h \
+    src/headers/dbcontrol.h \
+    src/headers/dbmapper.h \
+    src/headers/dbtypes.h \
+    src/headers/executor.h \
+    src/headers/manipulator.h \
+    src/headers/processor.h \
+    src/headers/selector.h \
+    src/headers/theory.h \

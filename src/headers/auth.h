@@ -1,5 +1,4 @@
-#ifndef AUTH_H
-#define AUTH_H
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -53,5 +52,3 @@ private:
     QDateTime lastExam;
     DBControl *sdb;
 };
-
-#endif // AUTH_H

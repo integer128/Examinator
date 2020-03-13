@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>Login.qml</file>
-        <file>Base.qml</file>
-        <file>Theory.qml</file>
-        <file>AdminPanel.qml</file>
-        <file>TheoryPage.qml</file>
+        <file alias="AdminPanel">src/qml/AdminPanel.qml</file>
+        <file alias="base">src/qml/base.qml</file>
+        <file alias="Login">src/qml/Login.qml</file>
+        <file alias="main">src/qml/main.qml</file>
+        <file alias="Theory">src/qml/Theory.qml</file>
+        <file alias="TheoryPage">src/qml/TheoryPage.qml</file>
     </qresource>
 </RCC>

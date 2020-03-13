@@ -1,15 +1,16 @@
 #include "auth.h"
 
 Auth::Auth(QObject *parent)
-    : QObject{parent}
-    , sdb{DBControl::getInstance()}
+    : QObject { parent }
+    , sdb { DBControl::getInstance() }
 {
 
 }
 
 void Auth::enter(QString login, QString password)
 {
-    if(sdb->checkUser(login, password) == true) {
+    if(sdb->checkUser(login, password) == true)
+    {
         setAuthFlag(true);
 
         this->login = login;
@@ -21,7 +22,9 @@ void Auth::enter(QString login, QString password)
         emit authFlagChanged();
         emit idChanged();
         emit roleChanged();
-    } else {
+    }
+    else
+    {
 
     }
 }
