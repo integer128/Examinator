@@ -39,10 +39,18 @@ std::pair<DBResult, std::vector<DBEntry> > Selector::select(const QString &table
     QString args[] = { utility::to_str(arguments)... };
     QString cond[] = { utility::to_str(conditions)... };
 
-    if(cond->size() == 0) query = generateQuery(tableName, arguments...);
-    if(args->size() == 0) query = generateQuery(tableName);
-
-    query = generateQuery(tableName, arguments..., conditions...);
+    if(cond->size() == 0)
+    {
+        query = generateQuery(tableName, arguments...);
+    }
+    else if(args->size() == 0)
+    {
+        query = generateQuery(tableName);
+    }
+    else
+    {
+        query = generateQuery(tableName, arguments..., conditions...);
+    }
 
     DBResult result;
     QSqlQuery resultQuery;
