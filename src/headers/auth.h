@@ -4,7 +4,9 @@
 #include <QString>
 #include <QDateTime>
 
-#include <dbcontrol.h>
+#include "connectionmanager.h"
+#include <processor.h>
+//#include <dbcontrol.h>
 
 class Auth : public QObject
 {
@@ -50,5 +52,9 @@ private:
     int id;
     int role;
     QDateTime lastExam;
-    DBControl *sdb;
+    //DBControl *sdb;
+
+    ConnectionManager& connectionManager { ConnectionManager::instance() };
+    Processor processor;
+
 };

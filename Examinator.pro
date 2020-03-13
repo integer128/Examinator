@@ -52,4 +52,6 @@ HEADERS += \
     src/headers/manipulator.h \
     src/headers/processor.h \
     src/headers/selector.h \
-    src/headers/theory.h \
+    src/headers/theory.h \ \
+    src/headers/utility.h \
+    utility.h

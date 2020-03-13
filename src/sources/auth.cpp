@@ -2,14 +2,25 @@
 
 Auth::Auth(QObject *parent)
     : QObject { parent }
-    , sdb { DBControl::getInstance() }
+    //, sdb { DBControl::getInstance() }
 {
 
 }
 
 void Auth::enter(QString login, QString password)
 {
-    if(sdb->checkUser(login, password) == true)
+    if(connectionManager.isValid())
+    {
+        std::pair<DBResult, std::vector<DBEntry> > pair_ = processor.requestTableData(DBTables::users);
+
+        if(pair_.first == DBResult::OK)
+        {
+            for(auto v : pair_.second) {
+
+            }
+        }
+    }
+    /*if(sdb->checkUser(login, password) == true)
     {
         setAuthFlag(true);
 
@@ -26,5 +37,5 @@ void Auth::enter(QString login, QString password)
     else
     {
 
-    }
+    }*/
 }
