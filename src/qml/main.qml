@@ -1,7 +1,6 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import Auth 1.0
-import Theory 1.0
+import User 1.0
 
 ApplicationWindow {
     id: window
@@ -10,7 +9,7 @@ ApplicationWindow {
     height: 480
     title: "Examinator"
 
-    Auth {
+    User {
         id: auth
 
         onAuthFlagChanged: {
@@ -18,14 +17,9 @@ ApplicationWindow {
                 stackView.push("qrc:/base")
             } else {
                 stackView.pop()
+
             }
         }
-    }
-
-    TheoryData {
-        id: theory_data
-        txt: ""
-        txt_name: ""
     }
 
     StackView {

@@ -1,108 +1,67 @@
 #include "selector.h"
-#include "utility.h"
+#include "executor.h"
 
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QString>
 
-std::pair<DBResult, std::vector<DBEntry> > Selector::selectAll(const QString &tableName)
+using namespace DBTypes;
+
+namespace db
+{
+std::pair<DBResult, std::vector<QVariantList> > Selector::selectAll(const QString& tableName)
 {
     QString query { generateQuery(tableName) };
-
+    std::vector<QVariantList> returnData;
     DBResult result;
     QSqlQuery resultQuery;
-    std::vector<DBEntry> returnData;
+    std::tie(result, resultQuery) = m_executor.execute(query);
+
+    if (result == DBResult::OK)
+    {
+        while (resultQuery.next())
+        {
+            const QSqlRecord& resultRecord = resultQuery.record();
+            QVariantList result;
+
+            for (int i = 0; i < resultRecord.count(); ++i)
+            {
+                result.push_back(resultRecord.value(i));
+            }
+            returnData.push_back(std::move(result));
+        }
+    }
+    return { result, returnData };
+}
+
+std::pair<DBResult, std::vector<QVariantList> > Selector::select(const QString& tableName, const QString& login)
+{
+    QString query { "SELECT * FROM " + tableName + " WHERE login='" + login + "';" };
+    std::vector<QVariantList> returnData;
+    DBResult result;
+    QSqlQuery resultQuery;
     std::tie(result, resultQuery) = m_executor.execute(query);
 
     if(result == DBResult::OK)
     {
         while(resultQuery.next())
         {
-            const QSqlRecord& entryRecord { resultQuery.record() };
-            QVariantList entryData;
-            entryData.reserve(entryRecord.count());
+            const QSqlRecord& record = resultQuery.record();
+            QVariantList list;
 
-            for(int i = 0; i < entryRecord.count(); ++i)
+            for(int i = 0; i < record.count(); ++i)
             {
-                entryData.push_back(entryRecord.value(i));
+                list.push_back(record.value(i));
             }
-
-            returnData.emplace_back(std::move(entryData));
+            returnData.push_back(std::move(list));
         }
     }
     return { result, returnData };
 }
 
-
-template<typename ...Args>
-std::pair<DBResult, std::vector<DBEntry> > Selector::select(const QString &tableName, Args ...arguments)
+QString Selector::generateQuery(const QString& tableName) const
 {
-    QString query;
-    QString args[] = { utility::to_str(arguments)... };
-
-    if(args->size() == 0)
-    {
-        query = generateQuery(tableName, arguments...);
-    }
-    else
-    {
-        query = generateQuery(tableName);
-    }
-
-    DBResult result;
-    QSqlQuery resultQuery;
-    std::vector<DBEntry> returnData;
-    std::tie(result, resultQuery) = m_executor.execute(query);
-
-    if(result == DBResult::OK)
-    {
-        while(resultQuery.next())
-        {
-            const QSqlRecord& entryRecord { resultQuery.record() };
-            QVariantList entryData;
-            entryData.reserve(entryRecord.count());
-
-            for(int i = 0; i < entryRecord.count(); ++i)
-            {
-                entryData.push_back(entryRecord.value(i));
-            }
-            returnData.emplace_back(std::move(entryData));
-        }
-    }
-    return { result, returnData };
-}
-
-QString Selector::generateQuery(const QString &tableName) const
-{
-    QString query { "SELECT rowid, * FROM " + tableName };
+    QString query = "SELECT rowid, * FROM " + tableName;
     return query;
 }
-
-template<typename ...Arguments>
-QString Selector::generateQuery(const QString &tableName, Arguments ...arguments) const
-{
-    QString query { "SELECT " };
-    QString tmp[] { utility::to_str(arguments)... };
-
-    const int conditionIndex = tmp->indexOf(":");
-
-    for(int i = 0; i < conditionIndex; ++i)
-    {
-        query += tmp[i];
-        if(i != conditionIndex) query += ",";
-    }
-
-    query += " FROM " + tableName;
-
-    if(conditionIndex)
-    {
-        query += " WHERE ";
-        for(int i = conditionIndex + 1; i < tmp->size(); i++)
-        {
-            query += tmp[i];
-
-            if(i != tmp->size()) query += " AND ";
-        }
-    }
-
-    return query;
 }

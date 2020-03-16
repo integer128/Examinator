@@ -4,22 +4,12 @@
 User::User(QObject *parent)
     : QObject { parent }
 {
-
-}
-
-User::User(const QString &login, const QString &password, const QString &fio, const int &number, const int &role)
-    : m_login { login }
-    , m_password { password }
-    , m_fio { fio }
-    , m_number { number }
-    , m_role { role }
-{
-
+    m_user = new UserInfo();
 }
 
 User::~User()
 {
-
+    delete m_user;
 }
 
 bool User::getAuthFlag() const
@@ -27,7 +17,7 @@ bool User::getAuthFlag() const
     return m_authFlag;
 }
 
-void User::setAuthFlag(const bool &flag)
+void User::setAuthFlag(const bool& flag)
 {
     if(m_authFlag != flag)
     {
@@ -37,14 +27,45 @@ void User::setAuthFlag(const bool &flag)
     emit AuthFlagChanged();
 }
 
-void User::enter(const QString &login, const QString &password)
+int User::getRole() const
 {
-    m_login = login;
-    m_password = password;
-
+    return m_user->role();
 }
 
-bool User::checkAuth(const QString &login, const QString &password)
+void User::setRole(const int& value)
 {
+    m_user->role(value);
 
+    emit RoleChanged();
+}
+
+void User::enter(const QString& login, const QString& password)
+{
+    if(checkAuth(login,password))
+    {
+        setAuthFlag(true);
+    }
+}
+
+bool User::checkAuth(const QString& login, const QString& password)
+{
+    bool flag = false;
+
+    std::vector<UserInfo> userResult { m_reader.requestUserBrowse(login) };
+
+    if(userResult.size() > 0)
+    {
+        if(password == userResult.front().password())
+        {
+            flag = true;
+        }
+
+        m_user = new UserInfo(userResult.front().login(),
+                              userResult.front().password(),
+                              userResult.front().fio(),
+                              userResult.front().number(),
+                              userResult.front().role());
+        return flag;
+    }
+    return flag;
 }

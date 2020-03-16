@@ -3,42 +3,36 @@
 #include <QObject>
 #include <QString>
 #include <QDateTime>
+#include <QVariant>
 
-#include "processor.h"
+#include "userinfo.h"
+#include <userreader.h>
 
 class User : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool authFlag READ getAuthFlag WRITE setAuthFlag NOTIFY AuthFlagChanged)
+    Q_PROPERTY(int userRole READ getRole WRITE setRole NOTIFY RoleChanged)
 
 public:
     explicit User(QObject *parent = nullptr);
-
-    User(const User&) = delete;
-    User& operator=(const User&) = delete;
-
-    User(const QString& login,
-         const QString& password,
-         const QString& fio,
-         const int& number,
-         const int& role);
     ~User();
 
     bool getAuthFlag() const;
     void setAuthFlag(const bool& flag);
+
+    int getRole() const;
+    void setRole(const int& value);
 
     Q_INVOKABLE void enter(const QString& login, const QString& password);
     bool checkAuth(const QString& login, const QString& password);
 
 signals:
     void AuthFlagChanged();
-private:
+    void RoleChanged();
 
-    QString m_login;
-    QString m_password;
-    QString m_fio;
-    QDateTime m_lastExam;
+private:
+    UserReader m_reader;
     bool m_authFlag { false };
-    int m_number;
-    int m_role;
+    UserInfo* m_user;
 };

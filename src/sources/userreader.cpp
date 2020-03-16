@@ -1,7 +1,10 @@
 #include "userreader.h"
+#include "dbtypes.h"
+
+#include <iterator>
 
 UserReader::UserReader()
-    : m_processor { new Processor {} }
+    : m_processor { new db::Processor {} }
 {
 
 }
@@ -11,24 +14,19 @@ UserReader::~UserReader()
 
 }
 
-std::pair<bool, std::vector<User> > UserReader::requestUserBrowse(const QString& login, const QString& password)
+std::vector<UserInfo> UserReader::requestUserBrowse(const QString& login)
 {
-    DBResult result;
-    std::vector<DBEntry> entries;
-    std::tie(result, entries) = m_processor->requestTableData(DBTables::users,
-                                                              "login", "password", "fio", "number", "role",
-                                                              ":",
-                                                              "login='"+login+"'",
-                                                              "password='"+password+"'");
-    return std::make_pair(result == DBResult::OK, transform(entries));
+    std::pair<DBTypes::DBResult, std::vector<QVariantList> > entries { m_processor->requestUserData(DBTypes::DBTables::Contacts, login) };
+
+    return transform(entries.second);
 }
 
-std::vector<User> UserReader::transform(const std::vector<DBEntry> &source)
+std::vector<UserInfo> UserReader::transform(const std::vector<QVariantList>& source)
 {
-    std::vector<User> target;
+    std::vector<UserInfo> target;
     std::transform(source.begin(), source.end(), std::back_inserter(target),
-                   [](const DBEntry& entry) {
-        return new User{ entry[0].toString(), entry[1].toString(), entry[2].toString(), entry[3].toInt(), entry[4].toInt() };
+                   [](const QVariantList& entry) {
+        return UserInfo{ entry[0].toString(), entry[1].toString(), entry[2].toString(), entry[3].toInt(), entry[4].toInt() };
     });
     return target;
 }

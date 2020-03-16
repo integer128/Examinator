@@ -2,14 +2,22 @@
 
 #include <memory>
 
+#include <QObject>
+
+#include "dbtypes.h"
+
+namespace db
+{
 class ConnectionManager
 {
 public:
-    ConnectionManager(const ConnectionManager&) = delete;
-    ConnectionManager& operator=(const ConnectionManager&) = delete;
+    Q_DISABLE_COPY(ConnectionManager)
     ~ConnectionManager();
-
     static ConnectionManager& instance();
+
+    QString databasePath() const;
+    DBTypes::DBState state() const;
+
     bool isValid() const;
 
 private:
@@ -17,3 +25,4 @@ private:
     struct ConnectionManagerPrivate;
     std::unique_ptr<ConnectionManagerPrivate> m_d;
 };
+}

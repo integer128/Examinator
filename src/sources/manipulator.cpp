@@ -3,36 +3,40 @@
 
 #include <sstream>
 
-Manipulator::Manipulator()
+#include <QString>
+#include <QVariant>
+
+using namespace DBTypes;
+
+namespace db
 {
 
-}
-
-std::pair<DBResult, DBIndex> Manipulator::insertRow(const QString &tableName, const QVariantList &recordData)
+std::pair<DBResult, int> Manipulator::insertRow(const QString& tableName, const QVariantList& rowData)
 {
-    const QString& query { generateInsertQuery(tableName, recordData.size()) };
-    const auto& result { m_executor.execute(query, recordData) };
+    const QString& query { generateInsertQuery(tableName, rowData.size()) };
+    const std::pair<DBResult, QSqlQuery>& result { m_executor.execute(query, rowData) };
 
-    return { result.first, result.second.lastInsertId().toInt() };
+    return std::make_pair(result.first, result.second.lastInsertId().toInt());
 }
 
-QString Manipulator::generateBindString(size_t recordSize) const
+QString Manipulator::generateBindString(size_t paramCount) const
 {
     std::ostringstream bindings;
-    std::fill_n(std::ostream_iterator<std::string>(bindings), recordSize, "?,");
-
+    std::fill_n(std::ostream_iterator<std::string>(bindings), paramCount, "?,");
     std::string bindString = bindings.str();
-    bindString.pop_back();
+    bindString.pop_back(); // ","
 
-    return  QString::fromStdString(bindString);
+    return QString::fromStdString(bindString);
 }
 
-QString Manipulator::generateInsertQuery(const QString &tableName, size_t recordSize) const
+QString Manipulator::generateInsertQuery(const QString& tableName, size_t paramCount) const
 {
-    QString query { "INSERT INTO " + tableName + " (" + TableMapping.at(tableName) + ") VALUES (" };
+    QString query = "INSERT INTO " + tableName +  " (" + tablesMapping.at(tableName) + ")"
+                        " VALUES (";
 
-    query += generateBindString(recordSize);
+    query += generateBindString(paramCount);
     query += ")";
 
     return query;
+}
 }

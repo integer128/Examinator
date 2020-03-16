@@ -61,7 +61,7 @@ Page {
             id: fio_label
             x: tbtn.width + 10
             topPadding: 10
-            text: auth.fio + "(id:" + auth.userId + " role:" + auth.userRole + ")"
+            text: "FIO"
         }
     }
 

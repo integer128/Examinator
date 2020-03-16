@@ -3,7 +3,9 @@
 #include <vector>
 #include <memory>
 
-#include "user.h"
+#include "userinfo.h"
+#include "processor.h"
+#include "dbtypes.h"
 
 class UserReader
 {
@@ -11,9 +13,9 @@ public:
     UserReader();
     ~UserReader();
 
-    std::pair<bool, std::vector<User> > requestUserBrowse(const QString &login, const QString &password);
-    std::vector<User> transform(const std::vector<DBEntry>& source);
+    std::vector<UserInfo> requestUserBrowse(const QString& login);
+    std::vector<UserInfo> transform(const std::vector<QVariantList>& source);
 
 private:
-    std::unique_ptr<Processor> m_processor;
+    std::unique_ptr<db::Processor> m_processor;
 };

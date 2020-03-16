@@ -1,15 +1,15 @@
 #pragma once
 
-#include <QVariantList>
-
+namespace DBTypes
+{
 enum class DBResult {
     OK,
     FAIL
 };
 
 enum class DBTables {
-    users,
-    theory
+    Contacts = 1,
+    Theory
 };
 
 enum class DBState {
@@ -19,6 +19,4 @@ enum class DBState {
     ERROR_TABLES,
     ERROR_OPENING
 };
-
-using DBEntry = QVariantList;
-using DBIndex = int;
+}

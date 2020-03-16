@@ -18,18 +18,14 @@ INCLUDEPATH += $$PWD/src/source
 
 SOURCES += \
         src/main.cpp \
-        src/sources/auth.cpp \
         src/sources/connectionmanager.cpp \
-        src/sources/dbcontrol.cpp \
         src/sources/executor.cpp \
         src/sources/manipulator.cpp \
         src/sources/processor.cpp \
         src/sources/selector.cpp \
-        src/sources/theory.cpp \ \
-    src/sources/user.cpp \
-    src/sources/userreader.cpp \
-    user.cpp \
-    userreader.cpp
+        src/sources/user.cpp \
+        src/sources/userinfo.cpp \
+        src/sources/userreader.cpp \
 
 RESOURCES += qml.qrc
 
@@ -47,19 +43,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    src/headers/auth.h \
     src/headers/connectionmanager.h \
-    src/headers/dbcontrol.h \
     src/headers/dbmapper.h \
     src/headers/dbtypes.h \
     src/headers/executor.h \
     src/headers/manipulator.h \
     src/headers/processor.h \
     src/headers/selector.h \
-    src/headers/theory.h \ \
     src/headers/user.h \
+    src/headers/userinfo.h \
     src/headers/userreader.h \
-    src/headers/utility.h \
-    user.h \
-    userreader.h \
-    utility.h

@@ -1,15 +1,17 @@
 #include "processor.h"
+#include "manipulator.h"
 #include "selector.h"
 #include "dbmapper.h"
-#include "manipulator.h"
 
+namespace db
+{
 struct Processor::ProcessorPrivate
 {
-    Selector selector;
     Manipulator manipulator;
+    Selector selector;
 };
 
-Processor::Processor()
+db::Processor::Processor()
     : m_d { new ProcessorPrivate {} }
 {
 
@@ -20,10 +22,21 @@ Processor::~Processor()
 
 }
 
-template<typename ...Arguments>
-std::pair<DBResult, std::vector<DBEntry> > Processor::requestTableData(DBTables table, Arguments ...arguments)
+std::pair<DBTypes::DBResult, std::vector<QVariantList> > Processor::requestTableData(DBTypes::DBTables table)
 {
-    //const auto& result { m_d->selector.selectAll(TableMapper.at(table)) };
-    const auto& result { m_d->selector.select(TableMapper.at(table), arguments...) };
-    return result;
+    std::vector<QVariantList> result;
+    DBTypes::DBResult resultState;
+    std::tie(resultState, result) = m_d->selector.selectAll(tableMapper.at(table));
+
+    return std::make_pair(resultState, std::move(result));
+}
+
+std::pair<DBTypes::DBResult, std::vector<QVariantList> > Processor::requestUserData(DBTypes::DBTables table, const QString& login)
+{
+    std::vector<QVariantList> result;
+    DBTypes::DBResult resultState;
+    std::tie(resultState, result ) = m_d->selector.select(tableMapper.at(table), login);
+
+    return std::make_pair(resultState, std::move(result));
+}
 }

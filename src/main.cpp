@@ -2,8 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include <auth.h>
-#include <theory.h>
+#include "user.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,8 +18,7 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    qmlRegisterType<Auth>("Auth", 1, 0, "Auth");
-    qmlRegisterType<Theory>("Theory", 1, 0, "TheoryData");
+    qmlRegisterType<User>("User", 1, 0, "User");
 
     QObject::connect(&engine, &QQmlApplicationEngine::quit, &QGuiApplication::quit);
 

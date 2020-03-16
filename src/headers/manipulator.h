@@ -3,14 +3,18 @@
 #include "executor.h"
 #include "dbtypes.h"
 
+namespace db
+{
 class Manipulator
 {
 public:
-    Manipulator();
-    std::pair<DBResult, DBIndex> insertRow(const QString& tableName, const QVariantList& recordData);
+    std::pair<DBTypes::DBResult, int> insertRow(const QString& tableName, const QVariantList& rowData);
 
 private:
     Executor m_executor;
-    QString generateBindString(size_t recordSize) const;
-    QString generateInsertQuery(const QString& tableName, size_t recordSize) const;
+    QString generateBindString(size_t paramCount) const;
+    QString generateInsertQuery(const QString& tableName, size_t paramCount) const;
+    QString generateSetString(const QVector<QString>& columns, const QVariantList& values) const;
 };
+}
+

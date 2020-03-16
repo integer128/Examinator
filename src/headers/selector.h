@@ -1,26 +1,20 @@
 #pragma once
 
+#include <QVariantList>
+
 #include "dbtypes.h"
 #include "executor.h"
 
-#include <QString>
-#include <QVariantList>
-
-#include <vector>
-
+namespace db
+{
 class Selector
 {
 public:
-    std::pair<DBResult, std::vector<DBEntry> > selectAll(const QString& tableName);
-
-    template<typename ...Args> std::pair<DBResult, std::vector<DBEntry> >
-    select(const QString& tableName, Args ...arguments);
+    std::pair<DBTypes::DBResult, std::vector<QVariantList> > selectAll(const QString& tableName);
+    std::pair<DBTypes::DBResult, std::vector<QVariantList> > select(const QString& tableName, const QString& login);
 
 private:
     Executor m_executor;
-
     QString generateQuery(const QString& tableName) const;
-
-    template<typename ...Arguments>
-    QString generateQuery(const QString& tableName, Arguments...arguments) const;
 };
+}
