@@ -12,9 +12,9 @@ public:
     Processor();
     ~Processor();
 
-    DBPair requestTableData(DBTables table);
-    DBPair requestUserData(DBTables table, const QString& login);
-    std::pair<DBResult,std::vector<QVariant> > requestTheoryDataById(const short& id);
+    DBVariantList requestTableData(DBTables table);
+    DBVariantList requestUserData(DBTables table, const QString& login);
+    DBVariant requestTheoryDataById(const short& id);
 
 private:
     struct ProcessorPrivate;

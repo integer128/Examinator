@@ -29,12 +29,12 @@ void User::setAuth(const bool& flag)
 
 int User::getRole() const
 {
-    return m_user->role();
+    return m_user->m_role;
 }
 
 void User::setRole(const int& value)
 {
-    m_user->role(value);
+    m_user->m_role = value;
 
     emit RoleChanged();
 }
@@ -55,17 +55,16 @@ bool User::checkAuth(const QString& login, const QString& password)
 
     if(userResult.size() > 0)
     {
-        if(password == userResult.front().password())
+        if(password == userResult.front().m_password)
         {
             flag = true;
         }
 
-        m_user = new UserInfo(userResult.front().login(),
-                              userResult.front().password(),
-                              userResult.front().fio(),
-                              userResult.front().number(),
-                              userResult.front().role());
-        return flag;
+        m_user = new UserInfo(userResult.front().m_login,
+                              userResult.front().m_password,
+                              userResult.front().m_fio,
+                              userResult.front().m_number,
+                              userResult.front().m_role);
     }
     return flag;
 }

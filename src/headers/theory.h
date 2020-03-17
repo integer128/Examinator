@@ -2,16 +2,9 @@
 
 #include "dbtypes.h"
 #include "theoryreader.h"
+#include "Types.h"
 
 #include <QObject>
-#include <QString>
-
-struct TheoryData
-{
-    short theory_id;
-    QString theory_name;
-    QString theory;
-};
 
 class Theory : public QObject
 {

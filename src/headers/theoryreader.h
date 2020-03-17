@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Theory.h"
 #include "processor.h"
 #include "dbtypes.h"
+#include "Types.h"
 
 #include <memory>
 

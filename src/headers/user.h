@@ -1,6 +1,6 @@
 #pragma once
 
-#include "userinfo.h"
+#include "Types.h"
 #include "userreader.h"
 
 #include <QObject>

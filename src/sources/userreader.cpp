@@ -16,7 +16,7 @@ UserReader::~UserReader()
 
 std::vector<UserInfo> UserReader::requestUserBrowse(const QString& login)
 {
-    database::DBPair entries
+    database::DBVariantList entries
     { m_processor->requestUserData(database::DBTables::Contacts, login) };
 
     return transform(entries.second);

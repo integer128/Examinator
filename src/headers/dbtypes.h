@@ -27,6 +27,7 @@ enum class DBState
     ERROR_OPENING
 };
 
-using DBPair = std::pair<DBResult, std::vector<QVariantList> >;
+using DBVariant     = std::pair<DBResult, std::vector<QVariant>     >;
+using DBVariantList = std::pair<DBResult, std::vector<QVariantList> >;
 }
 

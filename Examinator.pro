@@ -26,7 +26,6 @@ SOURCES += \
         src/sources/theory.cpp \
         src/sources/theoryreader.cpp \
         src/sources/user.cpp \
-        src/sources/userinfo.cpp \
         src/sources/userreader.cpp \
 
 RESOURCES += qml.qrc
@@ -45,6 +44,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
+    src/headers/Types.h \
     src/headers/connectionmanager.h \
     src/headers/dbmapper.h \
     src/headers/dbtypes.h \
@@ -55,5 +55,4 @@ HEADERS += \
     src/headers/theory.h \
     src/headers/theoryreader.h \
     src/headers/user.h \
-    src/headers/userinfo.h \
     src/headers/userreader.h \

@@ -7,7 +7,7 @@
 
 namespace database
 {
-DBPair Selector::selectAll(const QString& tableName)
+DBVariantList Selector::selectAll(const QString& tableName)
 {
     QString query { generateQuery(tableName) };
     std::vector<QVariantList> returnData;
@@ -32,7 +32,7 @@ DBPair Selector::selectAll(const QString& tableName)
     return { result, returnData };
 }
 
-DBPair Selector::select(const QString& tableName, const QString& login)
+DBVariantList Selector::select(const QString& tableName, const QString& login)
 {
     QString query
     {
@@ -62,7 +62,7 @@ DBPair Selector::select(const QString& tableName, const QString& login)
     return { result, returnData };
 }
 
-std::pair<DBResult, std::vector<QVariant> > Selector::selectTheoryById(const short &id)
+DBVariant Selector::selectTheoryById(const short &id)
 {
     QString query
     {

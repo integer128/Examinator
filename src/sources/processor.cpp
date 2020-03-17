@@ -22,7 +22,7 @@ Processor::~Processor()
 
 }
 
-DBPair Processor::requestTableData(DBTables table)
+DBVariantList Processor::requestTableData(DBTables table)
 {
     std::vector<QVariantList> result;
     DBResult resultState;
@@ -32,7 +32,7 @@ DBPair Processor::requestTableData(DBTables table)
     return std::make_pair(resultState, std::move(result));
 }
 
-DBPair Processor::requestUserData(DBTables table, const QString& login)
+DBVariantList Processor::requestUserData(DBTables table, const QString& login)
 {
     std::vector<QVariantList> result;
     DBResult resultState;
@@ -42,7 +42,7 @@ DBPair Processor::requestUserData(DBTables table, const QString& login)
     return std::make_pair(resultState, std::move(result));
 }
 
-std::pair<DBResult,std::vector<QVariant> > Processor::requestTheoryDataById(const short &id)
+DBVariant Processor::requestTheoryDataById(const short &id)
 {
     std::vector<QVariant> result;
     DBResult resultState;

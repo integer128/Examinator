@@ -8,10 +8,9 @@ namespace database
 class Selector
 {
 public:
-    DBPair selectAll(const QString& tableName);
-    DBPair select(const QString& tableName, const QString& login);
-    std::pair<DBResult, std::vector<QVariant>>
-    selectTheoryById(const short& id);
+    DBVariantList selectAll(const QString& tableName);
+    DBVariantList select(const QString& tableName, const QString& login);
+    DBVariant selectTheoryById(const short& id);
 
 private:
     Executor m_executor;

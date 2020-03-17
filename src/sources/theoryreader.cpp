@@ -12,7 +12,7 @@ TheoryReader::~TheoryReader()
 
 TheoryData TheoryReader::requestTheoryDataById(const short &id)
 {
-    std::pair<database::DBResult, std::vector<QVariant> > entries
+    database::DBVariant entries
     { m_processor->requestTheoryDataById(id) };
 
     return transform(entries.second);
