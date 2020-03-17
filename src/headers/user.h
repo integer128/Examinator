@@ -1,12 +1,9 @@
 #pragma once
 
-#include <QObject>
-#include <QString>
-#include <QDateTime>
-#include <QVariant>
-
 #include "userinfo.h"
 #include <userreader.h>
+
+#include <QObject>
 
 class User : public QObject
 {

@@ -1,10 +1,10 @@
 #pragma once
 
+#include "dbtypes.h"
+
 #include <QObject>
 
 #include <memory>
-
-#include "dbtypes.h"
 
 namespace database
 {

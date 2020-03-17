@@ -1,7 +1,5 @@
 #pragma once
 
-#include <QVariantList>
-
 #include "dbtypes.h"
 #include "executor.h"
 

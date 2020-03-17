@@ -1,7 +1,8 @@
 #pragma once
 
+#include <QVariantList>
+
 #include <vector>
-#include <userinfo.h>
 
 namespace database
 {

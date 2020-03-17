@@ -61,8 +61,6 @@ Page {
                                           : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
                     stackView.push("qrc:/TheoryPage")
-                    theory_data.setTextByIndex(1)
-                    theory_data.setTextNameByIndex(1)
                 }
             }
         }

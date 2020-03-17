@@ -1,11 +1,11 @@
 #pragma once
 
-#include <vector>
-#include <memory>
-
 #include "userinfo.h"
 #include "processor.h"
 #include "dbtypes.h"
+
+#include <vector>
+#include <memory>
 
 class UserReader
 {

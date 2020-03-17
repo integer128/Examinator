@@ -28,7 +28,7 @@ Page {
 
         Label {
             anchors.centerIn: parent
-            text: theory_data.txt_name
+            text: " "//theory_data.txt_name
         }
 
         ToolButton {
@@ -78,14 +78,14 @@ Page {
         Text {
             id: text_area
             padding: 25
-            text: theory_data.txt
+            text: ""// theory_data.txt
             color: "#ffffff"
         }
 
         TextEdit {
             id: text_edit
             padding: 25
-            text: theory_data.txt
+            text: ""//theory_data.txt
             color: "#ffffff"
             visible: false
             enabled: false

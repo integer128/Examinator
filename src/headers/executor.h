@@ -1,9 +1,8 @@
 #pragma once
 
-#include <QMap>
-#include <QSqlQuery>
+#include "connectionmanager.h"
 
-#include <connectionmanager.h>
+#include <QSqlQuery>
 
 namespace database
 {
