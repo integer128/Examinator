@@ -6,9 +6,7 @@
 #include <QStandardPaths>
 #include <QDir>
 
-using namespace DBTypes;
-
-namespace db
+namespace database
 {
 namespace
 {
@@ -92,16 +90,19 @@ bool ConnectionManager::ConnectionManagerPrivate::setupWorkspace()
 {
     const QString databaseName { "ContactsDB" };
 
-    const QString location { QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) };
+    const QString location {
+        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) };
     const QString fullPath { location + "/" + databaseName };
 
     m_dbPath = fullPath;
 
     QDir dbDirectory { location };
+
     if (!dbDirectory.exists())
     {
         const bool creationResult { dbDirectory.mkpath(location) };
-        qWarning() << "DB directory not exist, creating result: " << creationResult;
+        qWarning() << "DB directory not exist, creating result: "
+                   << creationResult;
     }
     qDebug() << "Data path: " << fullPath;
 
@@ -134,11 +135,13 @@ bool ConnectionManager::ConnectionManagerPrivate::setupTables()
         {
             result = false;
             m_state = DBState::ERROR_TABLES;
-            qWarning() << "Table creation failed. Reason: " << query.lastError();
+            qWarning() << "Table creation failed. Reason: "
+                       << query.lastError();
         }
         else
         {
-            qWarning() << "Table successfully created! Query: \n" << query.lastQuery();
+            qWarning() << "Table successfully created! Query: \n"
+                       << query.lastQuery();
         }
     }
 

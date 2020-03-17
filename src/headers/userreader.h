@@ -17,5 +17,5 @@ public:
     std::vector<UserInfo> transform(const std::vector<QVariantList>& source);
 
 private:
-    std::unique_ptr<db::Processor> m_processor;
+    std::unique_ptr<database::Processor> m_processor;
 };

@@ -11,15 +11,15 @@
 class User : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool authFlag READ getAuthFlag WRITE setAuthFlag NOTIFY AuthFlagChanged)
+    Q_PROPERTY(bool authFlag READ getAuth WRITE setAuth NOTIFY AuthFlagChanged)
     Q_PROPERTY(int userRole READ getRole WRITE setRole NOTIFY RoleChanged)
 
 public:
     explicit User(QObject *parent = nullptr);
     ~User();
 
-    bool getAuthFlag() const;
-    void setAuthFlag(const bool& flag);
+    bool getAuth() const;
+    void setAuth(const bool& flag);
 
     int getRole() const;
     void setRole(const int& value);

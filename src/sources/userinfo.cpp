@@ -6,7 +6,11 @@ UserInfo::~UserInfo()
 
 }
 
-UserInfo::UserInfo(const QString& login, const QString& password, const QString& fio, const int& number, const int& role)
+UserInfo::UserInfo(const QString& login,
+                   const QString& password,
+                   const QString& fio,
+                   const int& number,
+                   const int& role)
     : m_login { std::move(login) }
     , m_password { std::move(password) }
     , m_fio { std::move(fio) }

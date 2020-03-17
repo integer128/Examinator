@@ -12,12 +12,12 @@ User::~User()
     delete m_user;
 }
 
-bool User::getAuthFlag() const
+bool User::getAuth() const
 {
     return m_authFlag;
 }
 
-void User::setAuthFlag(const bool& flag)
+void User::setAuth(const bool& flag)
 {
     if(m_authFlag != flag)
     {
@@ -43,7 +43,7 @@ void User::enter(const QString& login, const QString& password)
 {
     if(checkAuth(login,password))
     {
-        setAuthFlag(true);
+        setAuth(true);
     }
 }
 

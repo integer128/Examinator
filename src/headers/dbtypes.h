@@ -1,22 +1,31 @@
 #pragma once
 
-namespace DBTypes
+#include <vector>
+#include <userinfo.h>
+
+namespace database
 {
-enum class DBResult {
+enum class DBResult
+{
     OK,
     FAIL
 };
 
-enum class DBTables {
+enum class DBTables
+{
     Contacts = 1,
     Theory
 };
 
-enum class DBState {
+enum class DBState
+{
     OK,
     ERROR_NO_DRIVER,
     ERROR_WORKSPACE,
     ERROR_TABLES,
     ERROR_OPENING
 };
+
+using DBPair = std::pair<DBResult, std::vector<QVariantList> >;
 }
+

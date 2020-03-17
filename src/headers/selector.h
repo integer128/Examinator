@@ -5,13 +5,13 @@
 #include "dbtypes.h"
 #include "executor.h"
 
-namespace db
+namespace database
 {
 class Selector
 {
 public:
-    std::pair<DBTypes::DBResult, std::vector<QVariantList> > selectAll(const QString& tableName);
-    std::pair<DBTypes::DBResult, std::vector<QVariantList> > select(const QString& tableName, const QString& login);
+    DBPair selectAll(const QString& tableName);
+    DBPair select(const QString& tableName, const QString& login);
 
 private:
     Executor m_executor;

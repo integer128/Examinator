@@ -10,8 +10,10 @@ public:
     UserInfo() = default;
     ~UserInfo();
 
-    UserInfo(const QString& login, const QString& password,
-             const QString& fio, const int& number,
+    UserInfo(const QString& login,
+             const QString& password,
+             const QString& fio,
+             const int& number,
              const int& role);
 
     QString login() const;

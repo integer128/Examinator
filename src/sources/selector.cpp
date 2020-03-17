@@ -5,11 +5,9 @@
 #include <QSqlRecord>
 #include <QString>
 
-using namespace DBTypes;
-
-namespace db
+namespace database
 {
-std::pair<DBResult, std::vector<QVariantList> > Selector::selectAll(const QString& tableName)
+DBPair Selector::selectAll(const QString& tableName)
 {
     QString query { generateQuery(tableName) };
     std::vector<QVariantList> returnData;
@@ -34,9 +32,14 @@ std::pair<DBResult, std::vector<QVariantList> > Selector::selectAll(const QStrin
     return { result, returnData };
 }
 
-std::pair<DBResult, std::vector<QVariantList> > Selector::select(const QString& tableName, const QString& login)
+DBPair Selector::select(const QString& tableName, const QString& login)
 {
-    QString query { "SELECT * FROM " + tableName + " WHERE login='" + login + "';" };
+    QString query
+    {
+        "SELECT * FROM " + tableName +
+        " WHERE login='" + login + "';"
+    };
+
     std::vector<QVariantList> returnData;
     DBResult result;
     QSqlQuery resultQuery;

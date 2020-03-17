@@ -1,22 +1,23 @@
 #pragma once
 
-#include <memory>
-
 #include <QObject>
+
+#include <memory>
 
 #include "dbtypes.h"
 
-namespace db
+namespace database
 {
 class ConnectionManager
 {
 public:
     Q_DISABLE_COPY(ConnectionManager)
     ~ConnectionManager();
+
     static ConnectionManager& instance();
 
     QString databasePath() const;
-    DBTypes::DBState state() const;
+    DBState state() const;
 
     bool isValid() const;
 

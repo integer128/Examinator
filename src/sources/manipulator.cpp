@@ -1,20 +1,20 @@
 #include "manipulator.h"
 #include "dbmapper.h"
 
-#include <sstream>
-
 #include <QString>
 #include <QVariant>
 
-using namespace DBTypes;
+#include <sstream>
 
-namespace db
+namespace database
 {
 
-std::pair<DBResult, int> Manipulator::insertRow(const QString& tableName, const QVariantList& rowData)
+std::pair<DBResult, int> Manipulator::insertRow(const QString& tableName,
+                                                const QVariantList& rowData)
 {
     const QString& query { generateInsertQuery(tableName, rowData.size()) };
-    const std::pair<DBResult, QSqlQuery>& result { m_executor.execute(query, rowData) };
+    const std::pair<DBResult, QSqlQuery>& result {
+        m_executor.execute(query, rowData) };
 
     return std::make_pair(result.first, result.second.lastInsertId().toInt());
 }
@@ -29,10 +29,17 @@ QString Manipulator::generateBindString(size_t paramCount) const
     return QString::fromStdString(bindString);
 }
 
-QString Manipulator::generateInsertQuery(const QString& tableName, size_t paramCount) const
+QString Manipulator::generateInsertQuery(const QString& tableName,
+                                         size_t paramCount) const
 {
-    QString query = "INSERT INTO " + tableName +  " (" + tablesMapping.at(tableName) + ")"
-                        " VALUES (";
+    QString query
+    {
+        "INSERT INTO " + tableName +
+        " (" +
+        tablesMapping.at(tableName) +
+        ")" +
+        " VALUES ("
+    };
 
     query += generateBindString(paramCount);
     query += ")";

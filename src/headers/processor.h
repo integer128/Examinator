@@ -3,11 +3,8 @@
 #include "dbtypes.h"
 
 #include <memory>
-#include <vector>
 
-#include <QVariantList>
-
-namespace db
+namespace database
 {
 class Processor
 {
@@ -15,8 +12,8 @@ public:
     Processor();
     ~Processor();
 
-    std::pair<DBTypes::DBResult, std::vector<QVariantList> > requestTableData(DBTypes::DBTables table);
-    std::pair<DBTypes::DBResult, std::vector<QVariantList> > requestUserData(DBTypes::DBTables table, const QString& login);
+    DBPair requestTableData(DBTables table);
+    DBPair requestUserData(DBTables table, const QString& login);
 
 private:
     struct ProcessorPrivate;

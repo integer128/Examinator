@@ -6,12 +6,12 @@
 
 #include <map>
 
-namespace db
+namespace database
 {
-static const std::map<DBTypes::DBTables, QString> tableMapper
+static const std::map<DBTables, QString> tableMapper
 {
-    { DBTypes::DBTables::Contacts, "Contacts" },
-    { DBTypes::DBTables::Theory, "Theory" }
+    { DBTables::Contacts, "Contacts" },
+    { DBTables::Theory, "Theory" }
 };
 
 static const std::map<QString, QString> tablesMapping

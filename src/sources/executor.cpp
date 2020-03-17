@@ -3,9 +3,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-using namespace DBTypes;
-
-namespace db
+namespace database
 {
 Executor::Executor()
     : m_connectionManager { ConnectionManager::instance() }
