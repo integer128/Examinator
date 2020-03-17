@@ -23,6 +23,8 @@ SOURCES += \
         src/sources/manipulator.cpp \
         src/sources/processor.cpp \
         src/sources/selector.cpp \
+        src/sources/theory.cpp \
+        src/sources/theoryreader.cpp \
         src/sources/user.cpp \
         src/sources/userinfo.cpp \
         src/sources/userreader.cpp \
@@ -50,6 +52,8 @@ HEADERS += \
     src/headers/manipulator.h \
     src/headers/processor.h \
     src/headers/selector.h \
+    src/headers/theory.h \
+    src/headers/theoryreader.h \
     src/headers/user.h \
     src/headers/userinfo.h \
     src/headers/userreader.h \

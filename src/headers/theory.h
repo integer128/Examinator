@@ -1,34 +1,43 @@
 #pragma once
 
+#include "dbtypes.h"
+#include "theoryreader.h"
+
 #include <QObject>
 #include <QString>
 
-#include <dbcontrol.h>
+struct TheoryData
+{
+    short theory_id;
+    QString theory_name;
+    QString theory;
+};
 
 class Theory : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString txt READ getText WRITE setText NOTIFY textChanged)
-    Q_PROPERTY(QString txt_name READ getTxtName WRITE setTxtName NOTIFY txtNameChanged)
+    Q_PROPERTY(int thId READ getId WRITE setId NOTIFY IdChanged)
+    Q_PROPERTY(QString thName READ getName WRITE setName NOTIFY NameChanged)
+    Q_PROPERTY(QString theory READ getTheory WRITE setTheory NOTIFY TheoryChanged)
 
 public:
     explicit Theory(QObject *parent = nullptr);
 
-    void setText(const QString &txt) { this->text_ = txt; }
-    QString getText() const { return this->text_; }
+    short getId() const;
+    void setId(const short& new_id);
 
-    void setTxtName(const QString& txt_name) { this->name_ = txt_name; }
-    QString getTxtName() const { return this->name_; }
+    QString getName() const;
+    void setName(const QString& new_name);
 
-    Q_INVOKABLE void setTextByIndex(int index);
-    Q_INVOKABLE void setTextNameByIndex(int index);
-
+    QString getTheory() const;
+    void setTheory(const QString& new_theory);
+    //TODO: GET THEORY
 signals:
-    void textChanged();
-    void txtNameChanged();
+    void IdChanged();
+    void NameChanged();
+    void TheoryChanged();
 
 private:
-    QString name_;
-    QString text_;
-    DBControl *dbc_;
+    TheoryData m_data;
+    TheoryReader m_reader;
 };

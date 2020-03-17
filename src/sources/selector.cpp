@@ -62,6 +62,33 @@ DBPair Selector::select(const QString& tableName, const QString& login)
     return { result, returnData };
 }
 
+std::pair<DBResult, std::vector<QVariant> > Selector::selectTheoryById(const short &id)
+{
+    QString query
+    {
+      "SELECT * FROM Theory WHERE text_id='" +
+       QString::number(id, 10) + "';"
+    };
+
+    std::vector<QVariant> returnData;
+    DBResult result;
+    QSqlQuery resultQuery;
+    std::tie(result, resultQuery) = m_executor.execute(query);
+
+    if(result == DBResult::OK)
+    {
+        while(resultQuery.next())
+        {
+            const QSqlRecord& record = resultQuery.record();
+            for(int i = 0; i < record.count(); ++i)
+            {
+                returnData.push_back(record.value(i));
+            }
+        }
+    }
+    return { result, returnData };
+}
+
 QString Selector::generateQuery(const QString& tableName) const
 {
     QString query = "SELECT rowid, * FROM " + tableName;

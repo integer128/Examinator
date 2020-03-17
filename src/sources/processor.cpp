@@ -41,4 +41,13 @@ DBPair Processor::requestUserData(DBTables table, const QString& login)
 
     return std::make_pair(resultState, std::move(result));
 }
+
+std::pair<DBResult,std::vector<QVariant> > Processor::requestTheoryDataById(const short &id)
+{
+    std::vector<QVariant> result;
+    DBResult resultState;
+    std::tie(resultState, result) = m_d->selector.selectTheoryById(id);
+
+    return std::make_pair(resultState, std::move(result));
+}
 }
