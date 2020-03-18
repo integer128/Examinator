@@ -51,7 +51,7 @@ bool User::checkAuth(const QString& login, const QString& password)
 {
     bool flag = false;
 
-    std::vector<UserInfo> userResult { m_reader.requestUserBrowse(login) };
+    UserData userResult { m_reader.requestUserBrowse(login) };
 
     if(userResult.size() > 0)
     {

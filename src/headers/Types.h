@@ -2,6 +2,7 @@
 
 #include <QString>
 #include <QDateTime>
+#include <vector>
 
 struct TheoryData
 {
@@ -34,3 +35,5 @@ struct UserInfo
     int m_role;
     QDateTime m_lastExam;
 };
+
+using UserData = std::vector<UserInfo>;
