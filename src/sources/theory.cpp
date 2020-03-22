@@ -51,10 +51,31 @@ void Theory::setTheory(const QString &new_theory)
     emit TheoryChanged();
 }
 
+bool Theory::getVisible() const
+{
+    return m_data.visible;
+}
+
+void Theory::setVisible(const bool &value)
+{
+    if(m_data.visible != value)
+    {
+        m_data.visible = value;
+    }
+
+    emit VisibleChanged();
+}
+
 void Theory::updateTheory(const int &new_id)
 {
     m_data = m_reader.requestTheoryDataById(new_id);
     emit IdChanged();
     emit NameChanged();
     emit TheoryChanged();
+    emit VisibleChanged();
+}
+
+void Theory::saveChanged()
+{
+    m_reader.requestSaveChanges(m_data);
 }

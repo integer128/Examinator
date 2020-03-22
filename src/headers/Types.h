@@ -9,6 +9,7 @@ struct TheoryData
     int theory_id;
     QString theory_name;
     QString theory;
+    bool visible;
 };
 
 struct UserInfo

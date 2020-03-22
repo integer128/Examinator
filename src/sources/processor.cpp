@@ -50,4 +50,9 @@ DBVariant Processor::requestTheoryDataById(const int &id)
 
     return std::make_pair(resultState, std::move(result));
 }
+
+void Processor::requestSaveChanges(const TheoryData& data)
+{
+    m_d->manipulator.saveChanges(data);
+}
 }

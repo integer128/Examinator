@@ -15,6 +15,8 @@ public:
     TheoryData requestTheoryDataById(const int& id);
     TheoryData transform(const std::vector<QVariant> &source);
 
+    void requestSaveChanges(const TheoryData& data);
+
 private:
     std::unique_ptr<database::Processor> m_processor;
 };

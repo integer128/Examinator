@@ -7,6 +7,8 @@ Page {
     id: theory_page_info
 
     property bool save_visible: false
+    property bool _visible: theory.thVisible
+
     header: ToolBar {
         height: 40
 
@@ -51,6 +53,8 @@ Page {
 
                 text_edit.visible = true
                 text_edit.enabled = true
+
+                checkbox.visible = true
             }
         }
 
@@ -67,7 +71,28 @@ Page {
             }
 
             onClicked: {
-                save_visible = false;
+                save_visible = false
+                checkbox.visible = false
+                theory.thVisible = checkbox.checked
+                theory.thTheory = text_edit.text
+
+                theory.saveChanged()
+            }
+        }
+
+        CheckBox {
+            id: checkbox
+            anchors.right: parent.right
+            anchors.rightMargin: 140
+            anchors.verticalCenter: parent.verticalCenter
+            visible: false
+            checked: _visible
+
+            Text {
+                text: "VISIBLE"
+                font.pixelSize: 16
+                anchors.right: parent.left
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
     }

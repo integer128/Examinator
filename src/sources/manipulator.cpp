@@ -19,6 +19,16 @@ std::pair<DBResult, int> Manipulator::insertRow(const QString& tableName,
     return std::make_pair(result.first, result.second.lastInsertId().toInt());
 }
 
+void Manipulator::saveChanges(const TheoryData &data)
+{
+    const QString query { "UPDATE Theory SET "
+                          "text='" + data.theory + "',"
+                          "text_visible='" + QString::number(data.visible) + "'"
+                          " WHERE text_id='" + QString::number(data.theory_id, 10) + "';"
+                        };
+    m_executor.execute(query);
+}
+
 QString Manipulator::generateBindString(size_t paramCount) const
 {
     std::ostringstream bindings;

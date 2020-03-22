@@ -2,6 +2,7 @@
 
 #include "executor.h"
 #include "dbtypes.h"
+#include <Types.h>
 
 namespace database
 {
@@ -10,6 +11,8 @@ class Manipulator
 public:
     std::pair<DBResult, int> insertRow(const QString& tableName,
                                        const QVariantList& rowData);
+
+    void saveChanges(const TheoryData& data);
 
 private:
     Executor m_executor;

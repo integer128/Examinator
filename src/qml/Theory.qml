@@ -43,6 +43,14 @@ Page {
                 anchors.centerIn: parent
             }
 
+            Label {
+                id: label_1
+                anchors.top: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "red"
+                font.bold: true
+            }
+
             Button {
                 id: btn_1
                 width: 200
@@ -60,8 +68,13 @@ Page {
                 onHoveredChanged: hovered ? rect_1.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
-                    stackView.push("qrc:/TheoryPage")
                     theory.updateTheory(1)
+                    if(theory.thVisible === true || auth.userRole === 2) {
+                        stackView.push("qrc:/TheoryPage")
+                    } else {
+                        label_1.text = "Данный раздел закрыт!"
+                        enabled = false
+                    }
                 }
             }
         }
@@ -80,6 +93,14 @@ Page {
                 anchors.centerIn: parent
             }
 
+            Label {
+                id: label_2
+                anchors.top: parent.top
+                anchors.horizontalCenter: parent.horizontalCenter
+                color: "red"
+                font.bold: true
+            }
+
             Button {
                 width: 200
                 height: 50
@@ -96,8 +117,13 @@ Page {
                                           : rect_2.color = Qt.rgba(255, 255, 255, 0.65)
 
                 onClicked: {
-                    stackView.push("qrc:/TheoryPage")
                     theory.updateTheory(2)
+                    if(theory.thVisible === true || auth.userRole === 2) {
+                        stackView.push("qrc:/TheoryPage")
+                    }else {
+                        label_2.text = "Данный раздел закрыт!"
+                        enabled = false
+                    }
                 }
             }
         }
@@ -116,6 +142,14 @@ Page {
                 anchors.centerIn: parent
             }
 
+            Label {
+                id: label_3
+                anchors.top: parent.top
+                color: "red"
+                font.bold: true
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
             Button {
                 width: 200
                 height: 50
@@ -131,8 +165,13 @@ Page {
                 onHoveredChanged: hovered ? rect_3.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_3.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
-                    stackView.push("qrc:/TheoryPage")
                     theory.updateTheory(3)
+                    if(theory.thVisible === true || auth.userRole === 2) {
+                        stackView.push("qrc:/TheoryPage")
+                    } else {
+                        label_3.text = "Данный раздел закрыт!"
+                        enabled = false
+                    }
                 }
             }
         }
