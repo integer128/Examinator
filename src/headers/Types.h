@@ -6,7 +6,7 @@
 
 struct TheoryData
 {
-    short theory_id;
+    int theory_id;
     QString theory_name;
     QString theory;
 };

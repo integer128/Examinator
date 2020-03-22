@@ -3,6 +3,7 @@
 #include <QQmlContext>
 
 #include "user.h"
+#include "Theory.h"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     qmlRegisterType<User>("User", 1, 0, "User");
+    qmlRegisterType<Theory>("Theory", 1, 0 , "Theory");
 
     QObject::connect(&engine, &QQmlApplicationEngine::quit, &QGuiApplication::quit);
 

@@ -1,6 +1,7 @@
 #include "theoryreader.h"
 
 TheoryReader::TheoryReader()
+    : m_processor { new database::Processor { }}
 {
 
 }
@@ -10,7 +11,7 @@ TheoryReader::~TheoryReader()
 
 }
 
-TheoryData TheoryReader::requestTheoryDataById(const short &id)
+TheoryData TheoryReader::requestTheoryDataById(const int &id)
 {
     database::DBVariant entries
     { m_processor->requestTheoryDataById(id) };
@@ -22,7 +23,7 @@ TheoryData TheoryReader::transform(const std::vector<QVariant> &source)
 {
     return TheoryData
     {
-        static_cast<short>(source[0].toInt()),
+        source[0].toInt(),
         source[1].toString(),
         source[2].toString()
     };

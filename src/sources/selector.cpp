@@ -62,7 +62,7 @@ DBVariantList Selector::select(const QString& tableName, const QString& login)
     return { result, returnData };
 }
 
-DBVariant Selector::selectTheoryById(const short &id)
+DBVariant Selector::selectTheoryById(const int &id)
 {
     QString query
     {

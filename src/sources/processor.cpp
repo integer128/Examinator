@@ -42,7 +42,7 @@ DBVariantList Processor::requestUserData(DBTables table, const QString& login)
     return std::make_pair(resultState, std::move(result));
 }
 
-DBVariant Processor::requestTheoryDataById(const short &id)
+DBVariant Processor::requestTheoryDataById(const int &id)
 {
     std::vector<QVariant> result;
     DBResult resultState;

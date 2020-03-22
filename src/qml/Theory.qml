@@ -61,6 +61,7 @@ Page {
                                           : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
                     stackView.push("qrc:/TheoryPage")
+                    theory.updateTheory(1)
                 }
             }
         }
@@ -96,8 +97,7 @@ Page {
 
                 onClicked: {
                     stackView.push("qrc:/TheoryPage")
-                    theory_data.setTextByIndex(2)
-                    theory_data.setTextNameByIndex(2)
+                    theory.updateTheory(2)
                 }
             }
         }
@@ -132,8 +132,7 @@ Page {
                                           : rect_3.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
                     stackView.push("qrc:/TheoryPage")
-                    theory_data.setTextByIndex(3)
-                    theory_data.setTextNameByIndex(3)
+                    theory.updateTheory(3)
                 }
             }
         }

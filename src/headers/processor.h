@@ -14,7 +14,7 @@ public:
 
     DBVariantList requestTableData(DBTables table);
     DBVariantList requestUserData(DBTables table, const QString& login);
-    DBVariant requestTheoryDataById(const short& id);
+    DBVariant requestTheoryDataById(const int& id);
 
 private:
     struct ProcessorPrivate;

@@ -1,6 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import User 1.0
+import Theory 1.0
 
 ApplicationWindow {
     id: window
@@ -20,6 +21,10 @@ ApplicationWindow {
 
             }
         }
+    }
+
+    Theory {
+        id: theory
     }
 
     StackView {

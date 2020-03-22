@@ -3,15 +3,15 @@
 Theory::Theory(QObject *parent)
     : QObject { parent }
 {
-
+    m_data.theory_id = 1; //default
 }
 
-short Theory::getId() const
+int Theory::getId() const
 {
     return m_data.theory_id;
 }
 
-void Theory::setId(const short &new_id)
+void Theory::setId(const int &new_id)
 {
     if(m_data.theory_id != new_id)
     {
@@ -48,5 +48,13 @@ void Theory::setTheory(const QString &new_theory)
         m_data.theory = new_theory;
     }
 
+    emit TheoryChanged();
+}
+
+void Theory::updateTheory(const int &new_id)
+{
+    m_data = m_reader.requestTheoryDataById(new_id);
+    emit IdChanged();
+    emit NameChanged();
     emit TheoryChanged();
 }

@@ -10,7 +10,7 @@ class Selector
 public:
     DBVariantList selectAll(const QString& tableName);
     DBVariantList select(const QString& tableName, const QString& login);
-    DBVariant selectTheoryById(const short& id);
+    DBVariant selectTheoryById(const int &id);
 
 private:
     Executor m_executor;

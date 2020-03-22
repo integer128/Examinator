@@ -12,7 +12,7 @@ public:
     TheoryReader();
     ~TheoryReader();
 
-    TheoryData requestTheoryDataById(const short& id);
+    TheoryData requestTheoryDataById(const int& id);
     TheoryData transform(const std::vector<QVariant> &source);
 
 private:
