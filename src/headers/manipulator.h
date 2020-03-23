@@ -2,7 +2,7 @@
 
 #include "executor.h"
 #include "dbtypes.h"
-#include <Types.h>
+#include "Types.h"
 
 namespace database
 {
@@ -17,8 +17,7 @@ public:
 private:
     Executor m_executor;
     QString generateBindString(size_t paramCount) const;
-    QString generateInsertQuery(const QString& tableName,
-                                size_t paramCount) const;
+    QString generateInsertQuery(const QString& tableName, size_t paramCount) const;
     QString generateSetString(const QVector<QString>& columns,
                               const QVariantList& values) const;
 };

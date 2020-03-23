@@ -1,7 +1,7 @@
 #include "theoryreader.h"
 
 TheoryReader::TheoryReader()
-    : m_processor { new database::Processor { }}
+    : m_processor { new database::Processor {} }
 {
 
 }
@@ -13,8 +13,7 @@ TheoryReader::~TheoryReader()
 
 TheoryData TheoryReader::requestTheoryDataById(const int &id)
 {
-    database::DBVariant entries
-    { m_processor->requestTheoryDataById(id) };
+    database::DBVariant entries { m_processor->requestTheoryDataById(id) };
 
     return transform(entries.second);
 }

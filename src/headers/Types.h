@@ -2,9 +2,11 @@
 
 #include <QString>
 #include <QDateTime>
+
 #include <vector>
 
-struct Test {
+struct Test
+{
     int s_id;
     QString s_question;
     int s_points;
@@ -33,9 +35,7 @@ struct UserInfo
         , m_fio { fio }
         , m_number { number }
         , m_role { role }
-    {
-
-    }
+    {}
 
     QString m_login;
     QString m_password;

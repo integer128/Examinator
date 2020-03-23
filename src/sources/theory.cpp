@@ -69,6 +69,7 @@ void Theory::setVisible(const bool &value)
 void Theory::updateTheory(const int &new_id)
 {
     m_data = m_reader.requestTheoryDataById(new_id);
+
     emit IdChanged();
     emit NameChanged();
     emit TheoryChanged();

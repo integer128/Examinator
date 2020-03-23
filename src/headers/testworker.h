@@ -1,9 +1,9 @@
 #pragma once
 
-#include <QObject>
-
 #include "Types.h"
 #include "processor.h"
+
+#include <QObject>
 
 #include <vector>
 

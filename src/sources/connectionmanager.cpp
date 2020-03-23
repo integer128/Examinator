@@ -101,8 +101,7 @@ bool ConnectionManager::ConnectionManagerPrivate::setupWorkspace()
     if (!dbDirectory.exists())
     {
         const bool creationResult { dbDirectory.mkpath(location) };
-        qWarning() << "DB directory not exist, creating result: "
-                   << creationResult;
+        qWarning() << "DB directory not exist, creating result: " << creationResult;
     }
     qDebug() << "Data path: " << fullPath;
 
@@ -135,8 +134,7 @@ bool ConnectionManager::ConnectionManagerPrivate::setupTables()
         {
             result = false;
             m_state = DBState::ERROR_TABLES;
-            qWarning() << "Table creation failed. Reason: "
-                       << query.lastError();
+            qWarning() << "Table creation failed. Reason: " << query.lastError();
         }
         else
         {

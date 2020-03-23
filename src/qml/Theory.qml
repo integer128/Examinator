@@ -30,7 +30,7 @@ Page {
         anchors.fill: parent
 
         Rectangle {
-            id: rect_1
+            id: rec1
             height: 150
             width: 200
             Layout.alignment: Qt.AlignHCenter
@@ -65,8 +65,8 @@ Page {
                     opacity: 0.65
                 }
 
-                onHoveredChanged: hovered ? rect_1.color = Qt.rgba(255, 255, 255, 0.35)
-                                          : rect_1.color = Qt.rgba(255, 255, 255, 0.65)
+                onHoveredChanged: hovered ? rec1.color = Qt.rgba(255, 255, 255, 0.35)
+                                          : rec1.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
                     theory.updateTheory(1)
                     if(theory.thVisible === true || auth.userRole === 2) {
@@ -80,7 +80,7 @@ Page {
         }
 
         Rectangle {
-            id: rect_2
+            id: rec2
             height: 150
             width: 200
             Layout.alignment: Qt.AlignHCenter
@@ -113,8 +113,8 @@ Page {
                     opacity: 0.65
                 }
 
-                onHoveredChanged: hovered ? rect_2.color = Qt.rgba(255, 255, 255, 0.35)
-                                          : rect_2.color = Qt.rgba(255, 255, 255, 0.65)
+                onHoveredChanged: hovered ? rec2.color = Qt.rgba(255, 255, 255, 0.35)
+                                          : rec2.color = Qt.rgba(255, 255, 255, 0.65)
 
                 onClicked: {
                     theory.updateTheory(2)
@@ -129,7 +129,7 @@ Page {
         }
 
         Rectangle {
-            id: rect_3
+            id: rec3
             height: 150
             width: 200
             Layout.alignment: Qt.AlignHCenter
@@ -162,8 +162,8 @@ Page {
                     opacity: 0.65
                 }
 
-                onHoveredChanged: hovered ? rect_3.color = Qt.rgba(255, 255, 255, 0.35)
-                                          : rect_3.color = Qt.rgba(255, 255, 255, 0.65)
+                onHoveredChanged: hovered ? rec3.color = Qt.rgba(255, 255, 255, 0.35)
+                                          : rec3.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
                     theory.updateTheory(3)
                     if(theory.thVisible === true || auth.userRole === 2) {

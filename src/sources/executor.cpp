@@ -11,7 +11,8 @@ Executor::Executor()
 
 }
 
-std::pair<DBResult, QSqlQuery> Executor::execute(const QString& queryText, const QVariantList& args)
+std::pair<DBResult, QSqlQuery> Executor::execute(const QString& queryText,
+                                                 const QVariantList& args)
 {
     if (!m_connectionManager.isValid())
     {

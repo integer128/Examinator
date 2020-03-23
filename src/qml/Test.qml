@@ -119,8 +119,10 @@ Page {
                 }
             }
 
-            onHoveredChanged: hovered ? rect_enter.color = "#4FB483" : rect_enter.color = "#58E2A0"
-            onPressedChanged: pressed ? rect_enter.color = "#31825B" : rect_enter.color = "#4FB483"
+            onHoveredChanged: hovered ? rect_enter.color = "#4FB483"
+                                      : rect_enter.color = "#58E2A0"
+            onPressedChanged: pressed ? rect_enter.color = "#31825B"
+                                      : rect_enter.color = "#4FB483"
         }
     }
 

@@ -91,7 +91,8 @@ DBVariant Selector::selectTheoryById(const int &id)
 
 std::pair<DBResult, std::vector<Test> > Selector::selectQuestionsAndAnswers()
 {
-    QString query {
+    QString query
+    {
         "SELECT id, question, points, answers, true_answer "
         "FROM Questions, Answers "
         "WHERE id = test_id"
@@ -129,7 +130,7 @@ std::pair<DBResult, std::vector<Test> > Selector::selectQuestionsAndAnswers()
 
 QString Selector::generateQuery(const QString& tableName) const
 {
-    QString query = "SELECT rowid, * FROM " + tableName;
+    QString query { "SELECT rowid, * FROM " + tableName };
     return query;
 }
 }
