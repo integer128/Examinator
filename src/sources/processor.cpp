@@ -51,6 +51,15 @@ DBVariant Processor::requestTheoryDataById(const int &id)
     return std::make_pair(resultState, std::move(result));
 }
 
+std::vector<Test> Processor::requestTestQuestionsAndAnswers()
+{
+    std::vector<Test> result;
+    DBResult resultState;
+    std::tie(resultState, result) = m_d->selector.selectQuestionsAndAnswers();
+
+    return result;
+}
+
 void Processor::requestSaveChanges(const TheoryData& data)
 {
     m_d->manipulator.saveChanges(data);

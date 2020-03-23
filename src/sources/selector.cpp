@@ -89,6 +89,44 @@ DBVariant Selector::selectTheoryById(const int &id)
     return { result, returnData };
 }
 
+std::pair<DBResult, std::vector<Test> > Selector::selectQuestionsAndAnswers()
+{
+    QString query {
+        "SELECT id, question, points, answers, true_answer "
+        "FROM Questions, Answers "
+        "WHERE id = test_id"
+    };
+
+    std::vector<Test> returnData;
+    DBResult result;
+    QSqlQuery resultQuery;
+    std::tie(result, resultQuery) = m_executor.execute(query);
+
+    if(result == DBResult::OK)
+    {
+        while (resultQuery.next())
+        {
+            const QSqlRecord& record = resultQuery.record();
+            Test test;
+            test.s_id = record.value(0).toInt();
+            test.s_question = record.value(1).toString();
+            test.s_points = record.value(2).toInt();
+
+            QString answers = record.value(3).toString();
+            QStringList answersList = answers.split(";");
+
+            for(int i = 0; i < answersList.size(); ++i){
+                test.answers.push_back(answersList[i]);
+            }
+
+            test.s_trueAnswerIndex = answersList.indexOf(record.value(4).toString());
+            returnData.push_back(test);
+
+        }
+    }
+    return { result, returnData };
+}
+
 QString Selector::generateQuery(const QString& tableName) const
 {
     QString query = "SELECT rowid, * FROM " + tableName;

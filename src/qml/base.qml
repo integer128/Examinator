@@ -132,6 +132,9 @@ Page {
 
                 onHoveredChanged: hovered ? rect_2.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rect_2.color = Qt.rgba(255, 255, 255, 0.65)
+                onClicked: {
+                    stackView.push("qrc:/Test")
+                }
             }
         }
 
