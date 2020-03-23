@@ -15,7 +15,10 @@ enum class DBResult
 enum class DBTables
 {
     Contacts = 1,
-    Theory
+    Theory,
+    Questions,
+    Answers,
+    Contacts_Answers
 };
 
 enum class DBState

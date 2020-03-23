@@ -4,6 +4,14 @@
 #include <QDateTime>
 #include <vector>
 
+struct Test {
+    int s_id;
+    QString s_question;
+    int s_points;
+    std::vector<QString> answers;
+    int s_trueAnswerIndex;
+};
+
 struct TheoryData
 {
     int theory_id;
