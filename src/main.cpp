@@ -4,6 +4,7 @@
 
 #include "user.h"
 #include "Theory.h"
+#include "testmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +19,9 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+    TestModel *tmodel { new TestModel{} };
+    engine.rootContext()->setContextProperty("qa_model", tmodel);
 
     qmlRegisterType<User>("User", 1, 0, "User");
     qmlRegisterType<Theory>("Theory", 1, 0 , "Theory");

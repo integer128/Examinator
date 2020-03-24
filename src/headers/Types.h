@@ -11,7 +11,8 @@ struct Test
     QString s_question;
     int s_points;
     std::vector<QString> answers;
-    int s_trueAnswerIndex;
+    int s_trueIndex; // 0, 1, 2
+    int s_selectedIndex;
 };
 
 struct TheoryData

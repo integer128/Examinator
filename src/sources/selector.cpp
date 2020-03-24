@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QString>
+#include <QDebug>
 
 namespace database
 {
@@ -116,13 +117,14 @@ std::pair<DBResult, std::vector<Test> > Selector::selectQuestionsAndAnswers()
             QString answers = record.value(3).toString();
             QStringList answersList = answers.split(";");
 
-            for(int i = 0; i < answersList.size(); ++i){
+
+            for(int i = 0; i < answersList.count(); ++i)
+            {
                 test.answers.push_back(answersList[i]);
             }
 
-            test.s_trueAnswerIndex = answersList.indexOf(record.value(4).toString());
+            test.s_trueIndex = answersList.indexOf(record.value(4).toString());
             returnData.push_back(test);
-
         }
     }
     return { result, returnData };

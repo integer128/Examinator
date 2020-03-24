@@ -133,6 +133,8 @@ Page {
                 onHoveredChanged: hovered ? rec2.color = Qt.rgba(255, 255, 255, 0.35)
                                           : rec2.color = Qt.rgba(255, 255, 255, 0.65)
                 onClicked: {
+                    qa_model.updateData()
+                    qa_model.createVariant()
                     stackView.push("qrc:/Test")
                 }
             }

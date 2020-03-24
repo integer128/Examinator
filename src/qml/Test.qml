@@ -35,7 +35,7 @@ Page {
             Layout.fillWidth: true
             spacing: 20
             clip: true
-            model: listmodel
+            model: qa_model
 
             delegate: Pane {
                 id: test_row
@@ -44,63 +44,64 @@ Page {
                 width: parent.width
                 height: 180
 
-                Column{
+                Column {
                     spacing: 2
 
                     Label {
-                        text: question
+                        text: testquestion
                         color: "#ffffff"
                     }
 
-                    RowLayout{
+                    RowLayout {
+
                         RadioButton {
                             id: radio_button1
 
                             onClicked: {
                                 radio_button2.checked = false
                                 radio_button3.checked = false
+                                selectedanswer = 0
                             }
                         }
 
-                        Label {
-                            text: answer1
-                        }
+                        Label { text: testanswer1 }
                     }
-                    RowLayout{
+
+                    RowLayout {
+
                         RadioButton {
                             id: radio_button2
 
                             onClicked: {
                                 radio_button1.checked = false
                                 radio_button3.checked = false
+                                selectedanswer = 1
                             }
                         }
 
-                        Label {
-                            text: answer2
-                        }
+                        Label { text: testanswer2 }
                     }
-                    RowLayout{
+
+                    RowLayout {
+
                         RadioButton {
                             id: radio_button3
 
                             onClicked: {
                                 radio_button2.checked = false
                                 radio_button1.checked = false
+                                selectedanswer = 2
                             }
                         }
 
-                        Label {
-                            text: answer3
-                        }
+                        Label { text: testanswer3 }
                     }
                 }
             }
         }
-
         Button {
             Layout.fillWidth: true
-            height: 80
+            height: 40
             flat: true
 
             background: Rectangle {
@@ -123,41 +124,10 @@ Page {
                                       : rect_enter.color = "#58E2A0"
             onPressedChanged: pressed ? rect_enter.color = "#31825B"
                                       : rect_enter.color = "#4FB483"
+
+            onClicked: {
+
+            }
         }
     }
-
-    ListModel {
-        id: listmodel
-        ListElement {
-            question: "Question1"
-            answer1: "answer1"
-            answer2: "answer2"
-            answer3: "answer3"
-        }
-        ListElement {
-            question: "Question2"
-            answer1: "answer1"
-            answer2: "answer2"
-            answer3: "answer3"
-        }
-        ListElement {
-            question: "Question3"
-            answer1: "answer1"
-            answer2: "answer2"
-            answer3: "answer3"
-        }
-        ListElement {
-            question: "Question4"
-            answer1: "answer1"
-            answer2: "answer2"
-            answer3: "answer3"
-        }
-        ListElement {
-            question: "Question5"
-            answer1: "answer1"
-            answer2: "answer2"
-            answer3: "answer3"
-        }
-    }
-
 }
