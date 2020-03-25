@@ -13,9 +13,7 @@ class TestWorker  : public QObject
 public:
     TestWorker();
     std::vector<Test> requestTests();
-
-signals:
-
+    void requestSaveResult(const int& userId, const int& points);
 
 private:
     std::unique_ptr<database::Processor> m_processor;

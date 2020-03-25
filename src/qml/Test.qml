@@ -27,6 +27,7 @@ Page {
     }
 
     ColumnLayout {
+        id: columnLayout_
         anchors.fill: parent
 
         ListView {
@@ -99,6 +100,7 @@ Page {
                 }
             }
         }
+
         Button {
             Layout.fillWidth: true
             height: 40
@@ -126,7 +128,42 @@ Page {
                                       : rect_enter.color = "#4FB483"
 
             onClicked: {
+                qa_model.calculatePoints(auth.userId, qa_model.points_)
+                columnLayout_.enabled = false
+                result_rect.visible = true
+            }
+        }
+    }
 
+    Rectangle {
+        id: result_rect
+        height: parent.height
+        width: parent.width
+        color: Qt.rgba(255,255,255,0.9)
+        visible: false;
+
+        Column {
+            spacing: 2
+
+            Label {
+                Layout.alignment: Qt.AlignCenter
+                text: "Ваш результат"
+                color: "black"
+                font.pixelSize: 16
+            }
+
+            Label {
+                Layout.alignment: Qt.AlignCenter
+                text: "Количество набранных баллов: " + qa_model.points_
+                color: "black"
+                font.pixelSize: 16
+            }
+
+            Label {
+                Layout.alignment: Qt.AlignCenter
+                text: "Количество правильных ответов: " + qa_model.trueAnswers_
+                color: "black"
+                font.pixelSize: 16
             }
         }
     }

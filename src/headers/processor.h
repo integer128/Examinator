@@ -19,6 +19,7 @@ public:
     std::vector<Test> requestTestQuestionsAndAnswers();
 
     void requestSaveChanges(const TheoryData &data);
+    void requestSaveResult(const int& userId, const int& points);
 
 private:
     struct ProcessorPrivate;

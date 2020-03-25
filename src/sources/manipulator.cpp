@@ -13,8 +13,10 @@ std::pair<DBResult, int> Manipulator::insertRow(const QString& tableName,
                                                 const QVariantList& rowData)
 {
     const QString& query { generateInsertQuery(tableName, rowData.size()) };
-    const std::pair<DBResult, QSqlQuery>& result {
-        m_executor.execute(query, rowData) };
+    const std::pair<DBResult, QSqlQuery>& result
+    {
+        m_executor.execute(query, rowData)
+    };
 
     return std::make_pair(result.first, result.second.lastInsertId().toInt());
 }

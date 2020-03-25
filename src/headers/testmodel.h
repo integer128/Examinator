@@ -6,12 +6,16 @@
 #include <QObject>
 #include <QAbstractListModel>
 #include <QString>
+#include <QDateTime>
 
 #include <vector>
 
 class TestModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int points_ READ getPoints WRITE setPoints NOTIFY PointsChanged)
+    Q_PROPERTY(int trueAnswers_ READ getTrueAnswers WRITE setTrueAnswers NOTIFY TrueAnswersChanged)
+
 public:
     TestModel();
 
@@ -24,9 +28,21 @@ public:
 
     Q_INVOKABLE void createVariant(); //create variant with random questions
     Q_INVOKABLE void updateData() { updateTests(); }
+    Q_INVOKABLE void calculatePoints(const int &userId);
+
+    int getPoints() const;
+    void setPoints(const int& points);
+
+    int getTrueAnswers() const;
+    void setTrueAnswers(const int& trueAnswers);
+
+signals:
+    void PointsChanged();
+    void TrueAnswersChanged();
 
 private:
     void updateTests();
+    void saveResult(const int& userId, const int& points);
 
     enum Roles {
         TestId,
@@ -39,6 +55,8 @@ private:
         Selected
     };
 
+    int m_points { 0 };
+    int m_trueAnswers { 0 };
     TestWorker m_worker;
     std::vector<Test> m_tests;
     std::vector<Test> m_allTests;

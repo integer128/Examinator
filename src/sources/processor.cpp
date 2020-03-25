@@ -63,4 +63,13 @@ void Processor::requestSaveChanges(const TheoryData& data)
 {
     m_d->manipulator.saveChanges(data);
 }
+
+void Processor::requestSaveResult(const int &userId, const int &points)
+{
+    DBResult resultState;
+    int result;
+    std::tie(resultState, result) = m_d->manipulator.insertRow(
+                tableMapper.at(DBTables::Contacts_Answers),
+                QVariantList { userId, points, QDateTime::currentDateTime() });
+}
 }

@@ -35,7 +35,6 @@ QVariant TestModel::data(const QModelIndex &index, int role) const
     case Roles::TrueAnswer: return test.answers[test.s_trueIndex];
     case Roles::Selected:   return test.s_selectedIndex;
     default:                return QVariant{};
-
     }
 }
 
@@ -64,15 +63,15 @@ bool TestModel::setData(const QModelIndex &index, const QVariant &value, int rol
 
     switch (role)
     {
-    case TestId: return false; //This property can't be set
-    case Question: m_tests[index.row()].s_question      = value.toString(); break;
-    case Points: m_tests[index.row()].s_points          = value.toInt();    break;
-    case Answer1: m_tests[index.row()].answers[0]       = value.toString(); break;
-    case Answer2: m_tests[index.row()].answers[1]       = value.toString(); break;
-    case Answer3: m_tests[index.row()].answers[2]       = value.toString(); break;
-    case TrueAnswer: m_tests[index.row()].s_trueIndex   = value.toInt();    break;
-    case Selected: m_tests[index.row()].s_selectedIndex = value.toInt();    break;
-    default: return false;
+    case TestId:     return false; //This property can't be set
+    case Question:   m_tests[index.row()].s_question      = value.toString(); break;
+    case Points:     m_tests[index.row()].s_points        = value.toInt();    break;
+    case Answer1:    m_tests[index.row()].answers[0]      = value.toString(); break;
+    case Answer2:    m_tests[index.row()].answers[1]      = value.toString(); break;
+    case Answer3:    m_tests[index.row()].answers[2]      = value.toString(); break;
+    case TrueAnswer: m_tests[index.row()].s_trueIndex     = value.toInt();    break;
+    case Selected:   m_tests[index.row()].s_selectedIndex = value.toInt();    break;
+    default:         return false;
     }
 
     emit dataChanged(index, index, QVector<int>() << role);
@@ -100,6 +99,36 @@ void TestModel::updateTests()
     }
 }
 
+void TestModel::saveResult(const int &userId, const int &points)
+{
+    m_worker.requestSaveResult(userId, points);
+}
+
+int TestModel::getTrueAnswers() const
+{
+    return m_trueAnswers;
+}
+
+void TestModel::setTrueAnswers(const int &trueAnswers)
+{
+    m_trueAnswers = trueAnswers;
+}
+
+int TestModel::getPoints() const
+{
+    return m_points;
+}
+
+void TestModel::setPoints(const int &points)
+{
+    if(m_points != points)
+    {
+        m_points = points;
+    }
+
+    emit PointsChanged();
+}
+
 void TestModel::createVariant()
 {
     std::vector<Test> temp { m_allTests };
@@ -118,4 +147,24 @@ void TestModel::createVariant()
     }
 
     emit endResetModel();
+}
+
+void TestModel::calculatePoints(const int& userId)
+{
+    m_points = 0;
+    m_trueAnswers = 0;
+
+    for(auto v : m_tests)
+    {
+        if(v.s_selectedIndex == v.s_trueIndex)
+        {
+            m_trueAnswers += 1;
+            m_points += v.s_points;
+        }
+    }
+
+    emit TrueAnswersChanged();
+    emit PointsChanged();
+
+    saveResult(userId, m_points);
 }
