@@ -34,17 +34,6 @@ Page {
             width: 300
             height: 100
             Layout.alignment: Qt.AlignHCenter
-            text: "Редактор теории"
-
-            onClicked: {
-
-            }
-        }
-
-        Button {
-            width: 300
-            height: 100
-            Layout.alignment: Qt.AlignHCenter
             text: "Редактор тестов"
 
             onClicked: {
@@ -59,18 +48,7 @@ Page {
             text: "Результаты тестирования"
 
             onClicked: {
-
-            }
-        }
-
-        Button {
-            width: 300
-            height: 100
-            Layout.alignment: Qt.AlignHCenter
-            text: "Генератор тестов"
-
-            onClicked: {
-
+                stackView.push("TestResults")
             }
         }
     }
