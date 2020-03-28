@@ -5,7 +5,6 @@
 
 #include <QObject>
 #include <QAbstractListModel>
-#include <QString>
 #include <QDateTime>
 
 #include <vector>

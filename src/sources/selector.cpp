@@ -3,8 +3,6 @@
 
 #include <QSqlQuery>
 #include <QSqlRecord>
-#include <QString>
-#include <QDebug>
 
 namespace database
 {

@@ -10,7 +10,7 @@ class User : public QObject
     Q_OBJECT
     Q_PROPERTY(bool authFlag READ getAuth WRITE setAuth NOTIFY AuthFlagChanged)
     Q_PROPERTY(int userRole READ getRole WRITE setRole NOTIFY RoleChanged)
-    Q_PROPERTY(int userId READ getUserId WRITE setUserId NOTIFY UserIdChanged)
+    Q_PROPERTY(int userId READ getUserId NOTIFY UserIdChanged)
 
 public:
     explicit User(QObject *parent = nullptr);
@@ -23,7 +23,6 @@ public:
     void setRole(const int& value);
 
     int getUserId() const;
-    void setUserId(const int& id);
 
     Q_INVOKABLE void enter(const QString& login, const QString& password);
     bool checkAuth(const QString& login, const QString& password);

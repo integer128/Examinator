@@ -1,8 +1,6 @@
 #include "user.h"
 #include "connectionmanager.h"
 
-#include <QDebug>
-
 User::User(QObject *parent)
     : QObject { parent }
 {
@@ -44,11 +42,6 @@ void User::setRole(const int& value)
 int User::getUserId() const
 {
     return m_user->m_number;
-}
-
-void User::setUserId(const int &id)
-{
-    qWarning() << "ERROR CHANGE ID to " << id << "\nUSER_ID NOT BE CHANGED!";
 }
 
 void User::enter(const QString& login, const QString& password)

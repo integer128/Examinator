@@ -34,7 +34,7 @@ QVariant TestModel::data(const QModelIndex &index, int role) const
     case Roles::Answer3:    return test.answers[2];
     case Roles::TrueAnswer: return test.answers[test.s_trueIndex];
     case Roles::Selected:   return test.s_selectedIndex;
-    default:                return QVariant{};
+    default:                return QVariant {};
     }
 }
 
