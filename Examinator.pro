@@ -24,6 +24,8 @@ SOURCES += \
         src/sources/processor.cpp \
         src/sources/selector.cpp \
     src/sources/testmodel.cpp \
+    src/sources/testresultreader.cpp \
+    src/sources/testresultsmodel.cpp \
     src/sources/testworker.cpp \
         src/sources/theory.cpp \
         src/sources/theoryreader.cpp \
@@ -55,6 +57,8 @@ HEADERS += \
     src/headers/processor.h \
     src/headers/selector.h \
     src/headers/testmodel.h \
+    src/headers/testresultreader.h \
+    src/headers/testresultsmodel.h \
     src/headers/testworker.h \
     src/headers/theory.h \
     src/headers/theoryreader.h \

@@ -15,6 +15,21 @@ struct Test
     int s_selectedIndex;
 };
 
+struct TestResult
+{
+    TestResult() = default;
+    TestResult(const int& id,
+               const int& result,
+               const QDateTime& date)
+        : s_id { id }
+        , s_result { result }
+        , s_date { date }
+    {}
+    int s_id;
+    int s_result;
+    QDateTime s_date;
+};
+
 struct TheoryData
 {
     int theory_id;
