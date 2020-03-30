@@ -14,6 +14,7 @@ public:
 
     void saveChanges(const TheoryData& data);
     void updateTest(const Test& test);
+    void addTest(const Test& test);
 
 private:
     Executor m_executor;

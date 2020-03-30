@@ -38,7 +38,7 @@ Page {
             }
 
             onClicked: {
-
+                stackView.push("AddTest")
             }
         }
     }

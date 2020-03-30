@@ -39,3 +39,8 @@ UserData UserReader::transform(const std::vector<QVariantList>& source)
     });
     return target;
 }
+
+void UserReader::requestAddTest(const Test &test)
+{
+    m_processor->requestAddTest(test);
+}

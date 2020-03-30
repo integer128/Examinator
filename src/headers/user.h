@@ -25,6 +25,10 @@ public:
     int getUserId() const;
 
     Q_INVOKABLE void enter(const QString& login, const QString& password);
+    Q_INVOKABLE void addTest(const QString& question,
+                             const QString& answer1, const QString& answer2,
+                             const QString& answer3, const QString& trueAnswer,
+                             const QString& points);
     bool checkAuth(const QString& login, const QString& password);
 
 signals:

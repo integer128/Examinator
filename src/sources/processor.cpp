@@ -77,4 +77,9 @@ void Processor::requestTestUpdate(const Test &test)
 {
     m_d->manipulator.updateTest(test);
 }
+
+void Processor::requestAddTest(const Test &test)
+{
+    m_d->manipulator.addTest(test);
+}
 }

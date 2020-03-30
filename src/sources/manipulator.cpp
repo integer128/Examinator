@@ -55,6 +55,22 @@ void Manipulator::updateTest(const Test &test)
     m_executor.execute(query2);
 }
 
+void Manipulator::addTest(const Test &test)
+{
+    const QString query1 {
+        "INSERT INTO Questions(id,question,points)"
+        " VALUES(NULL,'" + test.s_question + "','"  + QString::number(test.s_points,10) +"');"
+    };
+    const QString query2 {
+        "INSERT INTO Answers(test_id,answers, true_answer)"
+        " VALUES(last_insert_rowid(),'" +
+        test.answers[0] + ";" + test.answers[1] + ";" + test.answers[2] + "','" +
+        test.answers[test.s_trueIndex] + "');"
+    };
+    m_executor.execute(query1);
+    m_executor.execute(query2);
+}
+
 QString Manipulator::generateBindString(size_t paramCount) const
 {
     std::ostringstream bindings;

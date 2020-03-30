@@ -14,6 +14,7 @@ public:
 
     UserData requestUserBrowse(const QString& login);
     UserData transform(const std::vector<QVariantList>& source);
+    void requestAddTest(const Test& test);
 
 private:
     std::unique_ptr<database::Processor> m_processor;

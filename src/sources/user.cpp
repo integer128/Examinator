@@ -52,6 +52,22 @@ void User::enter(const QString& login, const QString& password)
     }
 }
 
+void User::addTest(const QString &question, const QString &answer1, const QString &answer2, const QString &answer3, const QString &trueAnswer, const QString &points)
+{
+    Test test;
+    test.s_question = question;
+    test.s_points = QString(points).toInt();
+    test.answers.push_back(answer1);
+    test.answers.push_back(answer2);
+    test.answers.push_back(answer3);
+    for(int i = 0; i < 3; i++)
+    {
+        if(test.answers[i] == trueAnswer)
+            test.s_trueIndex = i;
+    }
+    m_reader.requestAddTest(test);
+}
+
 bool User::checkAuth(const QString& login, const QString& password)
 {
     bool flag = false;
