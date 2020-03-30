@@ -22,9 +22,11 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     TestModel *tmodel { new TestModel{} };
+    TestModel * allTests { new TestModel (tmodel->getAllTests()) };
     TestResultsModel * rtModel { new TestResultsModel };
     engine.rootContext()->setContextProperty("qa_model", tmodel);
     engine.rootContext()->setContextProperty("tr_model", rtModel);
+    engine.rootContext()->setContextProperty("teditor", allTests);
 
     qmlRegisterType<User>("User", 1, 0, "User");
     qmlRegisterType<Theory>("Theory", 1, 0 , "Theory");

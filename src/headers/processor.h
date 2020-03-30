@@ -20,6 +20,7 @@ public:
 
     void requestSaveChanges(const TheoryData &data);
     void requestSaveResult(const int& userId, const int& points);
+    void requestTestUpdate(const Test &test);
 
 private:
     struct ProcessorPrivate;

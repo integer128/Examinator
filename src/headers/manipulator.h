@@ -13,6 +13,7 @@ public:
                                        const QVariantList& rowData);
 
     void saveChanges(const TheoryData& data);
+    void updateTest(const Test& test);
 
 private:
     Executor m_executor;

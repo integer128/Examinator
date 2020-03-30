@@ -37,7 +37,7 @@ Page {
             text: "Редактор тестов"
 
             onClicked: {
-
+                stackView.push("TestEditor")
             }
         }
 

@@ -34,6 +34,27 @@ void Manipulator::saveChanges(const TheoryData &data)
     m_executor.execute(query);
 }
 
+void Manipulator::updateTest(const Test &test)
+{
+    const QString query1
+    {
+      "UPDATE Questions SET "
+      "question='" + test.s_question + "',"
+      "points='" + QString::number(test.s_points, 10) + "'"
+      " WHERE id='" + QString::number(test.s_id, 10) + "';"
+    };
+    m_executor.execute(query1);
+
+    const QString query2
+    {
+        "UPDATE Answers SET "
+        "answers='"+test.answers[0]+";"+test.answers[1]+";"+test.answers[2]+"',"
+        "true_answer='" + test.answers[test.s_trueIndex] + "'"
+        " WHERE test_id='" + QString::number(test.s_id, 10) + "';"
+    };
+    m_executor.execute(query2);
+}
+
 QString Manipulator::generateBindString(size_t paramCount) const
 {
     std::ostringstream bindings;

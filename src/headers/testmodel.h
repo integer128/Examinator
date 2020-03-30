@@ -17,6 +17,7 @@ class TestModel : public QAbstractListModel
 
 public:
     TestModel();
+    TestModel(const std::vector<Test>& vector);
 
     virtual int rowCount(const QModelIndex &parent = {}) const override;
     virtual QVariant data(const QModelIndex &index, int role) const override;
@@ -28,12 +29,17 @@ public:
     Q_INVOKABLE void createVariant(); //create variant with random questions
     Q_INVOKABLE void updateData() { updateTests(); }
     Q_INVOKABLE void calculatePoints(const int &userId);
-
+    Q_INVOKABLE void saveChanges(const int& testId, const QString& question,
+                     const QString& answer1, const QString& answer2,
+                     const QString& answer3, const QString& trueAnswer,
+                     const QString& points);
     int getPoints() const;
     void setPoints(const int& points);
 
     int getTrueAnswers() const;
     void setTrueAnswers(const int& trueAnswers);
+
+    std::vector<Test> getAllTests() { return m_allTests; }
 
 signals:
     void PointsChanged();

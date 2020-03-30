@@ -6,6 +6,12 @@
 
 TestModel::TestModel()
 {
+    updateTests();
+}
+
+TestModel::TestModel(const std::vector<Test> &vector)
+    : m_tests { vector }
+{
 
 }
 
@@ -167,4 +173,12 @@ void TestModel::calculatePoints(const int& userId)
     emit PointsChanged();
 
     saveResult(userId, m_points);
+}
+
+void TestModel::saveChanges(const int &testId, const QString &question,
+                            const QString &answer1, const QString &answer2,
+                            const QString &answer3, const QString &trueAnswer,
+                            const QString &points)
+{
+    m_worker.requestUpdateTest(testId,question,answer1,answer2,answer3,trueAnswer,  QString(points).toInt());
 }

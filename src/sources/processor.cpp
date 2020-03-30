@@ -72,4 +72,9 @@ void Processor::requestSaveResult(const int &userId, const int &points)
                 tableMapper.at(DBTables::Contacts_Answers),
                 QVariantList { userId, points, QDateTime::currentDateTime() });
 }
+
+void Processor::requestTestUpdate(const Test &test)
+{
+    m_d->manipulator.updateTest(test);
+}
 }
