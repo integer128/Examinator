@@ -4,6 +4,26 @@ import QtQuick.Controls.Material 2.14
 import QtQuick.Layouts 1.12
 
 Page {
+
+    header: ToolBar {
+        height: 40
+
+        ToolButton {
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            anchors.verticalCenter: parent.verticalCenter
+
+            Text {
+                text: "Back"
+                font.pixelSize: 16
+                anchors.centerIn: parent
+            }
+
+            onClicked: {
+                stackView.pop();
+            }
+        }
+    }
     ColumnLayout {
         anchors.fill: parent
         anchors.leftMargin: 25
@@ -80,6 +100,7 @@ Page {
         }
 
         Button {
+            id: button1024
             text: "Добавить"
             enabled: answ1.text === answt.text ||
                      answ2.text === answt.text ||
@@ -87,9 +108,8 @@ Page {
 
             onClicked:  {
                 auth.addTest(txtquestion.text, answ1.text,
-                             answ2.text, answ3.text,
+                            answ2.text, answ3.text,
                              answt.text, answb.text )
-
                 stackView.pop()
             }
         }
