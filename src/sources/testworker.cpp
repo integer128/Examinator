@@ -16,7 +16,10 @@ void TestWorker::requestSaveResult(const int &userId, const int &points)
     m_processor->requestSaveResult(userId, points);
 }
 
-void TestWorker::requestUpdateTest(const int &testId, const QString &question, const QString &answer1, const QString &answer2, const QString &answer3, const QString &trueAnswer, const int &points)
+void TestWorker::requestUpdateTest(const int &testId, const QString &question,
+                                   const QString &answer1, const QString &answer2,
+                                   const QString &answer3, const QString &trueAnswer,
+                                   const int &points)
 {
     Test test;
     test.s_id = testId;
@@ -24,6 +27,7 @@ void TestWorker::requestUpdateTest(const int &testId, const QString &question, c
     test.answers.push_back(answer2);
     test.answers.push_back(answer3);
     test.s_question = question;
+
     for(int i = 0; i < 3; i++)
     {
         if(test.answers[i] == trueAnswer)

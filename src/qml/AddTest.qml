@@ -24,6 +24,7 @@ Page {
             }
         }
     }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.leftMargin: 25
@@ -63,6 +64,7 @@ Page {
                 placeholderText: "Введите ответ 2"
             }
         }
+
         RowLayout {
 
             Label {

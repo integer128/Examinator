@@ -18,7 +18,7 @@ QVariant TestResultsModel::data(const QModelIndex &index, int role) const
         return QVariant{};
     }
 
-    const TestResult& test = m_tr.at(index.row());
+    const TestResult &test = m_tr.at(index.row());
 
     switch (role)
     {

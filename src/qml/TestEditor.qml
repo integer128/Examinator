@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.12
 
 Page {
     id: editor_page
+
     header: ToolBar {
         height: 40
 
@@ -122,7 +123,7 @@ Page {
                         }
 
                         TextField {
-                            id: label_answer1_changed
+                            id: label_answer1_ch
                             text: testanswer1
                         }
                     }
@@ -137,7 +138,7 @@ Page {
                         }
 
                         TextField {
-                            id: label_answer2_changed
+                            id: label_answer2_ch
                             text: testanswer2
                         }
                     }
@@ -152,7 +153,7 @@ Page {
                         }
 
                         TextField {
-                            id: label_answer3_changed
+                            id: label_answer3_ch
                             text:testanswer3
                         }
                     }
@@ -167,7 +168,7 @@ Page {
                         }
 
                         TextField {
-                            id: label_answert_changed
+                            id: label_answert_ch
                             text: testtrueanswer
                         }
                     }
@@ -193,15 +194,16 @@ Page {
                         height: 30
                         visible: false
                         text: "СОХРАНИТЬ"
-                        enabled: label_answer1_changed.text === label_answert_changed.text ||
-                                 label_answer2_changed.text === label_answert_changed.text ||
-                                 label_answer3_changed.text === label_answert_changed.text
+                        enabled: label_answer1_ch.text === label_answert_ch.text ||
+                                 label_answer2_ch.text === label_answert_ch.text ||
+                                 label_answer3_ch.text === label_answert_ch.text
+
                         onClicked: {
                             teditor.saveChanges(testid, label112_change.text,
-                                                label_answer1_changed.text,
-                                                label_answer2_changed.text,
-                                                label_answer3_changed.text,
-                                                label_answert_changed.text,
+                                                label_answer1_ch.text,
+                                                label_answer2_ch.text,
+                                                label_answer3_ch.text,
+                                                label_answert_ch.text,
                                                 label_points_changed.text)
 
                         }

@@ -9,11 +9,11 @@
 namespace database
 {
 
-std::pair<DBResult, int> Manipulator::insertRow(const QString& tableName,
-                                                const QVariantList& rowData)
+std::pair<DBResult, int> Manipulator::insertRow(const QString &tableName,
+                                                const QVariantList &rowData)
 {
     const QString& query { generateInsertQuery(tableName, rowData.size()) };
-    const std::pair<DBResult, QSqlQuery>& result
+    const std::pair<DBResult, QSqlQuery> &result
     {
         m_executor.execute(query, rowData)
     };
@@ -27,9 +27,8 @@ void Manipulator::saveChanges(const TheoryData &data)
     {
         "UPDATE Theory SET "
         "text='" + data.theory + "',"
-        "text_visible='" + QString::number(data.visible) + "'"
-        " WHERE text_id='" + QString::number(data.theory_id, 10) +
-        "';"
+        "text_visible='" + QString::number(data.visible) + "' "
+        "WHERE text_id='" + QString::number(data.theory_id, 10) + "';"
     };
     m_executor.execute(query);
 }
@@ -49,19 +48,23 @@ void Manipulator::updateTest(const Test &test)
     {
         "UPDATE Answers SET "
         "answers='"+test.answers[0]+";"+test.answers[1]+";"+test.answers[2]+"',"
-        "true_answer='" + test.answers[test.s_trueIndex] + "'"
-        " WHERE test_id='" + QString::number(test.s_id, 10) + "';"
+        "true_answer='" + test.answers[test.s_trueIndex] + "' "
+        "WHERE test_id='" + QString::number(test.s_id, 10) + "';"
     };
     m_executor.execute(query2);
 }
 
 void Manipulator::addTest(const Test &test)
 {
-    const QString query1 {
-        "INSERT INTO Questions(id,question,points)"
-        " VALUES(NULL,'" + test.s_question + "','"  + QString::number(test.s_points,10) +"');"
+    const QString query1
+    {
+        "INSERT INTO Questions(id,question,points) "
+        "VALUES(NULL,'" + test.s_question +
+        "','"  + QString::number(test.s_points,10) +"');"
     };
-    const QString query2 {
+
+    const QString query2
+    {
         "INSERT INTO Answers(test_id,answers, true_answer)"
         " VALUES(last_insert_rowid(),'" +
         test.answers[0] + ";" + test.answers[1] + ";" + test.answers[2] + "','" +

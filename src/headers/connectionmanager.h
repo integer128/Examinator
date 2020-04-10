@@ -15,10 +15,8 @@ public:
     ~ConnectionManager();
 
     static ConnectionManager& instance();
-
     QString databasePath() const;
     DBState state() const;
-
     bool isValid() const;
 
 private:

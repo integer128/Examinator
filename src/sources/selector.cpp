@@ -6,7 +6,7 @@
 
 namespace database
 {
-DBVariantList Selector::selectAll(const QString& tableName)
+DBVariantList Selector::selectAll(const QString &tableName)
 {
     QString query { generateQuery(tableName) };
     std::vector<QVariantList> returnData;
@@ -18,7 +18,7 @@ DBVariantList Selector::selectAll(const QString& tableName)
     {
         while (resultQuery.next())
         {
-            const QSqlRecord& resultRecord = resultQuery.record();
+            const QSqlRecord &resultRecord = resultQuery.record();
             QVariantList result;
 
             for (int i = 0; i < resultRecord.count(); ++i)
@@ -31,7 +31,7 @@ DBVariantList Selector::selectAll(const QString& tableName)
     return { result, returnData };
 }
 
-DBVariantList Selector::select(const QString& tableName, const QString& login)
+DBVariantList Selector::select(const QString &tableName, const QString &login)
 {
     QString query
     {
@@ -48,7 +48,7 @@ DBVariantList Selector::select(const QString& tableName, const QString& login)
     {
         while(resultQuery.next())
         {
-            const QSqlRecord& record = resultQuery.record();
+            const QSqlRecord &record = resultQuery.record();
             QVariantList list;
 
             for(int i = 0; i < record.count(); ++i)
@@ -78,7 +78,7 @@ DBVariant Selector::selectTheoryById(const int &id)
     {
         while(resultQuery.next())
         {
-            const QSqlRecord& record = resultQuery.record();
+            const QSqlRecord &record = resultQuery.record();
             for(int i = 0; i < record.count(); ++i)
             {
                 returnData.push_back(record.value(i));
@@ -106,7 +106,7 @@ std::pair<DBResult, std::vector<Test> > Selector::selectQuestionsAndAnswers()
     {
         while (resultQuery.next())
         {
-            const QSqlRecord& record = resultQuery.record();
+            const QSqlRecord &record = resultQuery.record();
             Test test;
             test.s_id = record.value(0).toInt();
             test.s_question = record.value(1).toString();
@@ -128,7 +128,7 @@ std::pair<DBResult, std::vector<Test> > Selector::selectQuestionsAndAnswers()
     return { result, returnData };
 }
 
-QString Selector::generateQuery(const QString& tableName) const
+QString Selector::generateQuery(const QString &tableName) const
 {
     QString query { "SELECT rowid, * FROM " + tableName };
     return query;

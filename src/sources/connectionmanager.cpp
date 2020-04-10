@@ -112,7 +112,7 @@ bool ConnectionManager::ConnectionManagerPrivate::setupTables()
 {
     bool result { true };
 
-    std::vector<QSqlQuery> creationQueries =
+    std::vector<QSqlQuery> creationQueries
     {
         QSqlQuery
         {

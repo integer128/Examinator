@@ -18,18 +18,18 @@ public:
     explicit Theory(QObject *parent = nullptr);
 
     int getId() const;
-    void setId(const int& new_id);
+    void setId(const int &new_id);
 
     QString getName() const;
-    void setName(const QString& new_name);
+    void setName(const QString &new_name);
 
     QString getTheory() const;
-    void setTheory(const QString& new_theory);
+    void setTheory(const QString &new_theory);
 
     bool getVisible() const;
-    void setVisible(const bool& value);
+    void setVisible(const bool &value);
 
-    Q_INVOKABLE void updateTheory(const int& new_id = 1);
+    Q_INVOKABLE void updateTheory(const int &new_id = 1);
     Q_INVOKABLE void saveChanged();
 
 signals:

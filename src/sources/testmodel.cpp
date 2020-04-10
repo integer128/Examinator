@@ -28,7 +28,7 @@ QVariant TestModel::data(const QModelIndex &index, int role) const
         return QVariant{};
     }
 
-    const Test& test = m_tests.at(index.row());
+    const Test &test = m_tests.at(index.row());
 
     switch (role)
     {
@@ -155,7 +155,7 @@ void TestModel::createVariant()
     emit endResetModel();
 }
 
-void TestModel::calculatePoints(const int& userId)
+void TestModel::calculatePoints(const int &userId)
 {
     m_points = 0;
     m_trueAnswers = 0;
@@ -180,5 +180,6 @@ void TestModel::saveChanges(const int &testId, const QString &question,
                             const QString &answer3, const QString &trueAnswer,
                             const QString &points)
 {
-    m_worker.requestUpdateTest(testId,question,answer1,answer2,answer3,trueAnswer,  QString(points).toInt());
+    m_worker.requestUpdateTest(testId, question, answer1, answer2, answer3,
+                               trueAnswer, QString(points).toInt());
 }

@@ -1,5 +1,4 @@
 #include "user.h"
-#include "connectionmanager.h"
 
 User::User(QObject *parent)
     : QObject { parent }
@@ -17,7 +16,7 @@ bool User::getAuth() const
     return m_authFlag;
 }
 
-void User::setAuth(const bool& flag)
+void User::setAuth(const bool &flag)
 {
     if(m_authFlag != flag)
     {
@@ -32,7 +31,7 @@ int User::getRole() const
     return m_user->m_role;
 }
 
-void User::setRole(const int& value)
+void User::setRole(const int &value)
 {
     m_user->m_role = value;
 
@@ -44,7 +43,7 @@ int User::getUserId() const
     return m_user->m_number;
 }
 
-void User::enter(const QString& login, const QString& password)
+void User::enter(const QString &login, const QString &password)
 {
     if(checkAuth(login,password))
     {
@@ -52,7 +51,9 @@ void User::enter(const QString& login, const QString& password)
     }
 }
 
-void User::addTest(const QString &question, const QString &answer1, const QString &answer2, const QString &answer3, const QString &trueAnswer, const QString &points)
+void User::addTest(const QString &question, const QString &answer1,
+                   const QString &answer2, const QString &answer3,
+                   const QString &trueAnswer, const QString &points)
 {
     Test test;
     test.s_question = question;
@@ -60,6 +61,7 @@ void User::addTest(const QString &question, const QString &answer1, const QStrin
     test.answers.push_back(answer1);
     test.answers.push_back(answer2);
     test.answers.push_back(answer3);
+
     for(int i = 0; i < 3; i++)
     {
         if(test.answers[i] == trueAnswer)
@@ -68,7 +70,7 @@ void User::addTest(const QString &question, const QString &answer1, const QStrin
     m_reader.requestAddTest(test);
 }
 
-bool User::checkAuth(const QString& login, const QString& password)
+bool User::checkAuth(const QString &login, const QString &password)
 {
     bool flag = false;
 

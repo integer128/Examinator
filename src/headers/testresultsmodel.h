@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Types.h"
 #include "testresultreader.h"
 
 #include <QObject>
@@ -12,7 +11,6 @@ class TestResultsModel : public QAbstractListModel
 public:
     explicit TestResultsModel(QObject* parent = nullptr);
 
-    // QAbstractItemModel interface
 public:
     int rowCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;

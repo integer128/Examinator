@@ -18,9 +18,7 @@ struct Test
 struct TestResult
 {
     TestResult() = default;
-    TestResult(const int& id,
-               const int& result,
-               const QDateTime& date)
+    TestResult(const int &id, const int &result, const QDateTime &date)
         : s_id { id }
         , s_result { result }
         , s_date { date }
@@ -41,11 +39,8 @@ struct TheoryData
 struct UserInfo
 {
     UserInfo() = default;
-    UserInfo(const QString& login,
-             const QString& password,
-             const QString& fio,
-             const int& number,
-             const int& role)
+    UserInfo(const QString &login, const QString &password, const QString &fio,
+             const int &number, const int &role)
         : m_login { login }
         , m_password { password }
         , m_fio { fio }

@@ -120,7 +120,7 @@ Page {
                     theory.updateTheory(2)
                     if(theory.thVisible === true || auth.userRole === 2) {
                         stackView.push("qrc:/TheoryPage")
-                    }else {
+                    } else {
                         label_2.text = "Данный раздел закрыт!"
                         enabled = false
                     }

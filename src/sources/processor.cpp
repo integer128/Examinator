@@ -31,12 +31,12 @@ DBVariantList Processor::requestTableData(DBTables table)
     return std::make_pair(resultState, std::move(result));
 }
 
-DBVariantList Processor::requestUserData(DBTables table, const QString& login)
+DBVariantList Processor::requestUserData(DBTables table, const QString &login)
 {
     std::vector<QVariantList> result;
     DBResult resultState;
-    std::tie(resultState, result) = m_d->selector.select(tableMapper.at(table),
-                                                         login);
+    std::tie(resultState, result) =
+            m_d->selector.select(tableMapper.at(table), login);
 
     return std::make_pair(resultState, std::move(result));
 }
@@ -59,7 +59,7 @@ std::vector<Test> Processor::requestTestQuestionsAndAnswers()
     return result;
 }
 
-void Processor::requestSaveChanges(const TheoryData& data)
+void Processor::requestSaveChanges(const TheoryData &data)
 {
     m_d->manipulator.saveChanges(data);
 }
