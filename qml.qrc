@@ -8,8 +8,8 @@
         <file alias="Theory">src/qml/Theory.qml</file>
         <file alias="TheoryPage">src/qml/TheoryPage.qml</file>
         <file alias="Test">src/qml/Test.qml</file>
-        <file alias="TestResults">TestResults.qml</file>
-        <file alias="TestEditor">TestEditor.qml</file>
-        <file alias="AddTest">AddTest.qml</file>
+        <file alias="AddTest">src/qml/AddTest.qml</file>
+        <file alias="TestEditor">src/qml/TestEditor.qml</file>
+        <file alias="TestResults">src/qml/TestResults.qml</file>
     </qresource>
 </RCC>
